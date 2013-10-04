@@ -1,10 +1,10 @@
-(add-lib-path "recentf")
+;(add-lib-path "recentf")
 (require 'recentf)
 
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
- 
 ;; enable recent files mode.
 (recentf-mode t)
+
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
  
 ; 50 files ought to be enough.
 (setq recentf-max-saved-items 50)

@@ -1,5 +1,10 @@
 ;; additional libraries to include: recent
 
+(when (eq system-type 'darwin) ;; mac specific settings
+;  (setq mac-option-modifier 'alt)
+  (setq mac-command-modifier 'meta)
+  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  )
 
 ;; create a var for this directory
 (setq usr-config-dir (file-name-directory
@@ -13,19 +18,19 @@
 (eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
 
 (load-usr-config-file "utils.el")
-(load-usr-config-file "auto-complete-conf.el")
+;; (load-usr-config-file "auto-complete-conf.el")
 (load-usr-config-file "smex-conf.el")
-(load-usr-config-file "paredit-conf.el")
-(load-usr-config-file "cpp-conf.el")
+;; (load-usr-config-file "paredit-conf.el")
+;; (load-usr-config-file "cpp-conf.el")
 ;;(load-usr-config-file "cedet-conf.el")
 
 (load-usr-config-file "color-theme-conf.el")
 (load-usr-config-file "ido-conf.el")
-(load-usr-config-file "org-mode-conf.el")
+;(load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "recentf-conf.el")
-(load-usr-config-file "js2-conf.el")
-(add-lib-path "undo-tree")
-(require 'undo-tree)
+;(load-usr-config-file "js2-conf.el")
+;(add-lib-path "undo-tree")
+;(require 'undo-tree)
 ;;(global-undo-tree-mode)
 
 ;; (defun load-cedet ()
@@ -35,8 +40,8 @@
 ;----------------------------------------
 ;; put misc stuff in here
 (when window-system 
-  (set-frame-position (selected-frame) 150 30)
-  (set-frame-size (selected-frame) 98 62)
+  (set-frame-position (selected-frame) 75 29)
+  (set-frame-size (selected-frame) 98 60)
   (if (eq system-type 'windows-nt)
       (add-to-list 'default-frame-alist '(font . "-outline-Consolas-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
     (add-to-list 'default-frame-alist '(font . "-b&h-lucidatypewriter-medium-r-normal-sans-12-120-75-75-m-70-iso8859-1"))))
@@ -70,6 +75,7 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\M-`" 'other-frame)
 (defalias 'qrr 'query-replace-regexp)
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
@@ -83,7 +89,7 @@
 ; ----------------------------------------
 ; PHP stuff
 ; ----------------------------------------
-(load-usr-config-file "php-conf.el")
+;(load-usr-config-file "php-conf.el")
 
 ;----------------------------------------
 ; Version Control - turn this off because it's very slow over sshfs

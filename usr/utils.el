@@ -21,7 +21,7 @@
 (defun create-diary ()
   (interactive)
   (let ((todays-date (format-time-string "%Y%m%d.txt")))
-    (find-file (concat "C:/Documents and Settings/brendan.cox/My Documents/diary/" todays-date))))
+    (find-file (concat "/Users/bcox/diary/" todays-date))))
     
 (defun switch-to-last-buffer ()
   (interactive)
@@ -116,7 +116,7 @@
 (defun maximize-mac ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
-  (set-frame-size (selected-frame) 195 63))
+  (set-frame-size (selected-frame) 185 60))
 (defun fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
