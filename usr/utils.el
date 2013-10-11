@@ -109,14 +109,23 @@
 
 
 ;Set the frame to open at the top of the screen and fill screen vertically
-(defun maximize ()
+;; (defun maximize ()
+;;   (interactive)
+;;   (set-frame-position (selected-frame) 1 29)
+;;   (set-frame-size (selected-frame) 270 77))
+(defun make-big ()
   (interactive)
-  (set-frame-position (selected-frame) 1 29)
-  (set-frame-size (selected-frame) 270 77))
+  (set-frame-position (selected-frame) -1780 1)
+  (set-frame-size (selected-frame) 250 75))
+
+(defun make-small ()
+  (interactive)
+  (set-frame-position (selected-frame) 25 25)
+  (set-frame-size (selected-frame) 100 50))
 (defun maximize-mac ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
-  (set-frame-size (selected-frame) 185 60))
+  (set-frame-size (selected-frame) 197 60))
 (defun fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32

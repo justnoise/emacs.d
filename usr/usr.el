@@ -28,6 +28,8 @@
 (load-usr-config-file "ido-conf.el")
 ;(load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "recentf-conf.el")
+(load-usr-config-file "flymake-conf.el")
+
 ;(load-usr-config-file "js2-conf.el")
 ;(add-lib-path "undo-tree")
 ;(require 'undo-tree)
@@ -46,6 +48,10 @@
       (add-to-list 'default-frame-alist '(font . "-outline-Consolas-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
     (add-to-list 'default-frame-alist '(font . "-b&h-lucidatypewriter-medium-r-normal-sans-12-120-75-75-m-70-iso8859-1"))))
 
+
+(if (not (getenv "TERM_PROGRAM"))
+    (setenv "PATH"
+	    (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
 
 ; ideas for future improvement
 ;
