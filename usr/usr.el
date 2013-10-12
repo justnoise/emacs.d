@@ -1,8 +1,16 @@
-;; additional libraries to include: recent
+;
+; functions: 
+; kill current identifier
+; go to char in line (forwards and backwards)
+; go to next open parenthesis
+; go to next close parenthesis
+; have emacs automatically connect to a mysql db
 
 (when (eq system-type 'darwin) ;; mac specific settings
 ;  (setq mac-option-modifier 'alt)
   (setq mac-command-modifier 'meta)
+  (add-to-list 'exec-path "/usr/local/bin")
+  (add-to-list 'exec-path "/Users/bcox/bin")
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
   )
 
@@ -15,20 +23,24 @@
 
 (add-lib-path "lisp")
 
-(eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
+(when (>= emacs-major-version 24)
+      (load-usr-config-file "packages-conf.el")
+      (load-usr-config-file "auto-complete-conf.el")
+      (load-usr-config-file "jedi-conf.el")
+      (load-usr-config-file "color-theme-conf.el"))
 
 (load-usr-config-file "utils.el")
-;; (load-usr-config-file "auto-complete-conf.el")
 (load-usr-config-file "smex-conf.el")
+(load-usr-config-file "ido-conf.el")
+(load-usr-config-file "recentf-conf.el")
+(load-usr-config-file "flymake-conf.el")
+
+;(load-usr-config-file "org-mode-conf.el")
+
 ;; (load-usr-config-file "paredit-conf.el")
 ;; (load-usr-config-file "cpp-conf.el")
 ;;(load-usr-config-file "cedet-conf.el")
 
-(load-usr-config-file "color-theme-conf.el")
-(load-usr-config-file "ido-conf.el")
-;(load-usr-config-file "org-mode-conf.el")
-(load-usr-config-file "recentf-conf.el")
-(load-usr-config-file "flymake-conf.el")
 
 ;(load-usr-config-file "js2-conf.el")
 ;(add-lib-path "undo-tree")
@@ -39,6 +51,7 @@
 ;;   (interactive)
 ;;   (load-usr-config-file "cedet-conf.el"))
 
+(eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
 ;----------------------------------------
 ;; put misc stuff in here
 (when window-system 
@@ -54,14 +67,6 @@
 	    (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
 
 ; ideas for future improvement
-;
-; functions: 
-; kill current identifier
-; go to char in line (forwards and backwards)
-; go to next open parenthesis
-; go to next close parenthesis
-; have emacs automatically connect to a mysql db
-; create c++ file with copyright, include .h and create header file with class
 
 
 (push '("." . "~/.emacs_backups") backup-directory-alist)
@@ -75,7 +80,7 @@
 
 ;remove the useless toolbar from the top of the screen
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (global-set-key "\C-w" 'backward-kill-word)
@@ -83,8 +88,8 @@
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\M-`" 'other-frame)
 (defalias 'qrr 'query-replace-regexp)
-(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+;(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+;(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 
 ;; Shell colors
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)

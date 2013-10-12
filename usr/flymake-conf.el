@@ -9,9 +9,8 @@
 	   (local-file (file-relative-name
 			temp-file
 			(file-name-directory buffer-file-name))))
-      (message temp-file)
-      (message local-file)
-      (list "/usr/local/bin/pyflakes" (list temp-file))))
+      ;;(list "/usr/local/bin/pyflakes" (list temp-file))))
+      (list "pyflakes" (list temp-file))))
 
   (add-to-list 'flymake-allowed-file-name-masks
 	       '("\\.py\\'" flymake-pyflakes-init)))

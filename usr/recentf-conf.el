@@ -7,7 +7,7 @@
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
  
 ; 50 files ought to be enough.
-(setq recentf-max-saved-items 50)
+(setq recentf-max-saved-items 100)
  
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
