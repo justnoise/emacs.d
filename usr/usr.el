@@ -12,6 +12,8 @@
   (add-to-list 'exec-path "/usr/local/bin")
   (add-to-list 'exec-path "/Users/bcox/bin")
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  (custom-set-faces
+   '(default ((t (:height 140 :family "Inconsolata")))))
   )
 
 ;; create a var for this directory
@@ -54,12 +56,13 @@
 (eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
 ;----------------------------------------
 ;; put misc stuff in here
-(when window-system 
-  (set-frame-position (selected-frame) 75 29)
-  (set-frame-size (selected-frame) 98 60)
-  (if (eq system-type 'windows-nt)
-      (add-to-list 'default-frame-alist '(font . "-outline-Consolas-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
-    (add-to-list 'default-frame-alist '(font . "-b&h-lucidatypewriter-medium-r-normal-sans-12-120-75-75-m-70-iso8859-1"))))
+;; (when window-system 
+;;   (set-frame-position (selected-frame) 75 29)
+;;   (set-frame-size (selected-frame) 98 60)
+;;   (if (eq system-type 'windows-nt)
+;;       (add-to-list 'default-frame-alist '(font . "-outline-Consolas-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
+;;     (add-to-list 'default-frame-alist '(font . "-b&h-lucidatypewriter-medium-r-normal-sans-12-120-75-75-m-70-iso8859-1"))
+;;     ))
 
 
 (if (not (getenv "TERM_PROGRAM"))
