@@ -8,9 +8,11 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete/dict")
 (set-default 'ac-sources
-             '(ac-source-jedi-direct
-	       ac-source-abbrev
-               ac-source-dictionary))
+             '(ac-source-jedi-direct))
+;; (set-default 'ac-sources
+;;              '(ac-source-jedi-direct
+;; 	       ac-source-abbrev
+;;                ac-source-dictionary))
 (ac-config-default)
 (global-auto-complete-mode t)
 (dolist (mode '(python-mode ))

@@ -116,7 +116,7 @@
 (defun make-big ()
   (interactive)
   (set-frame-position (selected-frame) -1780 1)
-  (set-frame-size (selected-frame) 250 60))
+  (set-frame-size (selected-frame) 250 70))
 
 (defun make-small ()
   (interactive)

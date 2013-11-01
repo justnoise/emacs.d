@@ -28,7 +28,8 @@
 (when (>= emacs-major-version 24)
       (load-usr-config-file "packages-conf.el")
       (load-usr-config-file "auto-complete-conf.el")
-      (load-usr-config-file "jedi-conf.el")
+      (if (window-system)
+	  (load-usr-config-file "jedi-conf.el"))
       (load-usr-config-file "color-theme-conf.el"))
 
 (load-usr-config-file "utils.el")
@@ -36,7 +37,13 @@
 (load-usr-config-file "ido-conf.el")
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "flymake-conf.el")
+;;(load-usr-config-file "ipython-conf.el")
 
+(require 'find-file-in-repository)
+(global-set-key [f7] 'find-file-in-repository)
+
+(require 'windmove)
+(windmove-default-keybindings 'shift)
 ;(load-usr-config-file "org-mode-conf.el")
 
 ;; (load-usr-config-file "paredit-conf.el")
@@ -53,6 +60,17 @@
 ;;   (interactive)
 ;;   (load-usr-config-file "cedet-conf.el"))
 
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev 
+					 try-expand-dabbrev-all-buffers 
+					 try-expand-dabbrev-from-kill 
+					 try-complete-file-name-partially
+					 try-complete-file-name
+					 try-expand-all-abbrevs
+					 try-expand-list
+					 try-expand-line
+					 try-complete-lisp-symbol-partially
+					 try-complete-lisp-symbol))
+
 (eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
 ;----------------------------------------
 ;; put misc stuff in here
@@ -65,6 +83,8 @@
 ;;     ))
 
 
+
+;; todo, source from zshrc and use sed
 (if (not (getenv "TERM_PROGRAM"))
     (setenv "PATH"
 	    (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
