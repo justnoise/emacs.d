@@ -22,6 +22,10 @@
   (interactive)
   (let ((todays-date (format-time-string "%Y%m%d.txt")))
     (find-file (concat "/Users/bcox/diary/" todays-date))))
+
+(defun create-note (notename)
+  (interactive "sName of note:")
+  (find-file (concat "/Users/bcox/notes/" notename)))
     
 (defun switch-to-last-buffer ()
   (interactive)
@@ -214,3 +218,16 @@ character you want out to column 80"
               (set-visited-file-name newname)
               (set-buffer-modified-p nil)
               t))))
+
+(defun show-in-github (r1 r2)
+  (interactive "r")
+  (save-excursion
+    (let ((fn (magit-filename (buffer-file-name)))
+	  (github-url "https://github.com/saucelabs/sauce/blob/master/")
+	  (line1 0)
+	  (line2 0))
+      (setq github-url (format "%s%s#L%s-%s" github-url fn 
+			       (line-number-at-pos r1)
+			       (line-number-at-pos r2)))
+      (kill-new github-url)
+      (message "git url: %s" github-url))))
