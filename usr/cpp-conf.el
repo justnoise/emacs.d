@@ -2,8 +2,8 @@
 ; c++
 ;----------------------------------------
 
-(add-to-list 'auto-mode-alist
-     	     '("\\.h\\'" . c++-mode))
+;; (add-to-list 'auto-mode-alist
+;;      	     '("\\.h\\'" . c++-mode))
 
 (load-library "cpp")
 (add-hook 'c++-mode-hook

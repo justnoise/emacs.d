@@ -31,5 +31,3 @@
 ;(autoload 'jedi:setup "jedi" nil t)
 
 ;;
-
-

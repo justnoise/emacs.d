@@ -1,0 +1,13 @@
+(add-hook 'c-mode-hook
+	  '(lambda ( )
+	     (c-set-style "Stroustrup")
+	     (setq c-basic-offset 8)
+	     (setq tab-width 8)
+	     ;(c-toggle-auto-state)
+	     (global-set-key [f11] 'assistant)
+	     ;;(global-set-key "\C-c>" 'indent-region)
+	     (global-set-key "\C-co" 'ff-find-related-file)
+	     (global-set-key "\C-c\C-v" 'uncomment-region)
+	     (global-set-key "\C-co" 'ff-find-related-file)
+	     (global-set-key "\C-c|" 'align-regexp)
+       ))

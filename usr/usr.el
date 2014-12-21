@@ -1,5 +1,5 @@
 ;
-; functions: 
+; functions:
 ; kill current identifier
 ; go to char in line (forwards and backwards)
 ; go to next open parenthesis
@@ -10,6 +10,7 @@
 ;  (setq mac-option-modifier 'alt)
   (setq mac-command-modifier 'meta)
   (add-to-list 'exec-path "/usr/local/bin")
+  (add-to-list 'exec-path "/Users/bcox/go/bin")
   (add-to-list 'exec-path "/Users/bcox/bin")
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
   (custom-set-faces
@@ -34,9 +35,12 @@
 
 (load-usr-config-file "utils.el")
 (load-usr-config-file "smex-conf.el")
+(load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "ido-conf.el")
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "flymake-conf.el")
+(load-usr-config-file "go-conf.el")
+(load-usr-config-file "erlang-conf.el")
 ;;(load-usr-config-file "ipython-conf.el")
 
 (require 'find-file-in-repository)
@@ -44,10 +48,13 @@
 
 (require 'windmove)
 (windmove-default-keybindings 'shift)
+(setq split-height-threshold 1600)
+(setq split-width-threshold 800)
 ;(load-usr-config-file "org-mode-conf.el")
 
 ;; (load-usr-config-file "paredit-conf.el")
 ;; (load-usr-config-file "cpp-conf.el")
+(load-usr-config-file "c-conf.el")
 ;;(load-usr-config-file "cedet-conf.el")
 
 
@@ -60,9 +67,9 @@
 ;;   (interactive)
 ;;   (load-usr-config-file "cedet-conf.el"))
 
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev 
-					 try-expand-dabbrev-all-buffers 
-					 try-expand-dabbrev-from-kill 
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+					 try-expand-dabbrev-all-buffers
+					 try-expand-dabbrev-from-kill
 					 try-complete-file-name-partially
 					 try-complete-file-name
 					 try-expand-all-abbrevs
@@ -74,7 +81,7 @@
 (eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
 ;----------------------------------------
 ;; put misc stuff in here
-;; (when window-system 
+;; (when window-system
 ;;   (set-frame-position (selected-frame) 75 29)
 ;;   (set-frame-size (selected-frame) 98 60)
 ;;   (if (eq system-type 'windows-nt)
@@ -96,7 +103,7 @@
 (setq inhibit-splash-screen t)
 (setq transient-mark-mode nil)
 (setq auto-save-interval 600)
- 
+
 ;(setq font-lock-maximum-decoration 3)
 ;(setq x-select-enable-clipboard t)
 ;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)

@@ -1,5 +1,5 @@
 (defun camel-to-underscore (start end)
-  (interactive "r") 
+  (interactive "r")
   (save-restriction
     (narrow-to-region start end)
     (goto-char (point-min))
@@ -13,8 +13,8 @@
 
 
 ;; might want to change this to a bookmark?
-(defun eetasks () 
-  (interactive) 
+(defun eetasks ()
+  (interactive)
   (find-file "/home/bcox/sandbox/scripts/bin/tasks.xml")
   (setq buffer-read-only t))
 
@@ -26,12 +26,18 @@
 (defun create-note (notename)
   (interactive "sName of note:")
   (find-file (concat "/Users/bcox/notes/" notename)))
-    
+
 (defun switch-to-last-buffer ()
   (interactive)
   (switch-to-buffer nil))
 (global-set-key (quote [f7]) 'switch-to-last-buffer)
 
+(defun open-directory (dir)
+  (interactive "DDirectory: ")
+  (when (eq system-type 'darwin)
+    (if (eq (substring dir 0 1) "~")
+	(setq dir (concat "/Users/bcox" (substring dir 1))))
+    (call-process "/usr/bin/open" nil nil nil "")))
 
 ; == custom movement ==
 (defun next-line-center ()
@@ -46,7 +52,7 @@
 (global-set-key "\C-\M-k" 'previous-line-center)
 
 (defun open-next-line (arg)
-  "Move to the next line and then opens a line. 
+  "Move to the next line and then opens a line.
  See also `newline-and-indent'."
   (interactive "p")
   (end-of-line)
@@ -59,7 +65,7 @@
 ;; behave like vi's O command
 (defun open-previous-line (arg)
   "Open a new line before the current one.
- 
+
   See also `newline-and-indent'."
   (interactive "p")
   (beginning-of-line)
@@ -67,7 +73,7 @@
   (when newline-and-indent
     (indent-according-to-mode)))
 (global-set-key (kbd "M-o") 'open-previous-line)
- 
+
 ;; autoindent open-*-lines
 (defvar newline-and-indent t
   "Modify the behavior of the open-*-line functions to cause them to autoindent.")
@@ -119,9 +125,16 @@
 ;;   (set-frame-size (selected-frame) 270 77))
 (defun make-big ()
   (interactive)
-  (set-frame-position (selected-frame) -1780 1)
-  (set-frame-size (selected-frame) 250 70))
-
+  (set-frame-position (selected-frame) -2500 1)
+  (set-frame-size (selected-frame) 353 90))
+(defun make-big-home ()
+  (interactive)
+  (set-frame-position (selected-frame) -1850 1)
+  (set-frame-size (selected-frame) 260 75))
+;; (defun make-big-home ()
+;;   (interactive)
+;;   (set-frame-position (selected-frame) 1440 1)
+;;   (set-frame-size (selected-frame) 250 75))
 (defun make-small ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
@@ -134,7 +147,7 @@
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
- 
+
 (defun multiline-arg-list ()
   "take a long function list that hangs off the right side of the screen
 and make it a multiline argument list.  So far, this works in PHP but probably
@@ -153,15 +166,15 @@ also works in c and c++"
   (c-indent-command))
 
 
-(defun insert-character-to-column (insert-char column) 
+(defun insert-character-to-column (insert-char column)
   (let ((c 0))
     (while (and (< (current-column) 80)
                 (< c 80))
       (insert insert-char)
       (setq c (+ c 1)))))
-  
+
 (defun insert-hr (line-char)
-  "Insert a commented horizontal bar or whatever 
+  "Insert a commented horizontal bar or whatever
 character you want out to column 80"
   (interactive "cLine Character: ")
   (save-excursion
@@ -172,7 +185,7 @@ character you want out to column 80"
 (defun insert-break ()
   " Insert a box that looks like:
   //////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   //////////////////////////////////////////////////////////////////////////////"
   (interactive)
   (c-indent-command)
@@ -188,7 +201,7 @@ character you want out to column 80"
 
 ;; Shamelessly stolen from S. Yegge's my-dot-emacs-file blog post
 (defun rename-file-and-buffer (new-name)
-  "Renames both current buffer and file it's visiting to NEW-NAME." 
+  "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
@@ -196,14 +209,14 @@ character you want out to column 80"
         (message "Buffer '%s' is not visiting a file!" name)
       (if (get-buffer new-name)
           (message "A buffer named '%s' already exists!" new-name)
-        (progn 	 
+        (progn
           (rename-file name new-name 1)
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
 (defun move-buffer-file (dir)
-  "Moves both current buffer and file it's visiting to DIR." 
+  "Moves both current buffer and file it's visiting to DIR."
   (interactive "DNew directory: ")
   (let* ((name (buffer-name))
          (filename (buffer-file-name))
@@ -220,13 +233,12 @@ character you want out to column 80"
               t))))
 
 (defun show-in-github (r1 r2)
+  (require 'magit)
   (interactive "r")
   (save-excursion
     (let ((fn (magit-filename (buffer-file-name)))
-	  (github-url "https://github.com/saucelabs/sauce/blob/master/")
-	  (line1 0)
-	  (line2 0))
-      (setq github-url (format "%s%s#L%s-%s" github-url fn 
+	  (github-url "https://github.com/saucelabs/sauce/blob/master/"))
+      (setq github-url (format "%s%s#L%s-%s" github-url fn
 			       (line-number-at-pos r1)
 			       (line-number-at-pos r2)))
       (kill-new github-url)
