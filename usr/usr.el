@@ -17,6 +17,7 @@
    '(default ((t (:height 140 :family "Inconsolata")))))
   )
 
+(setq magit-last-seen-setup-instructions "1.4.0")
 ;; create a var for this directory
 (setq usr-config-dir (file-name-directory
                       (or (buffer-file-name) load-file-name)))
@@ -40,8 +41,16 @@
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "flymake-conf.el")
 (load-usr-config-file "go-conf.el")
-(load-usr-config-file "erlang-conf.el")
+(load-usr-config-file "elixir.el")
+;(load-usr-config-file "erlang-conf.el")
 ;;(load-usr-config-file "ipython-conf.el")
+
+;; Tried to get zsh to play nice with my emacs install... it no working
+;; (require 'multi-term)
+;; (setq multi-term-program "/usr/local/bin/zsh")
+;; (setq system-uses-terminfo nil)
+;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
 (require 'find-file-in-repository)
 (global-set-key [f7] 'find-file-in-repository)

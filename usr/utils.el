@@ -236,10 +236,23 @@ character you want out to column 80"
   (require 'magit)
   (interactive "r")
   (save-excursion
-    (let ((fn (magit-filename (buffer-file-name)))
-	  (github-url "https://github.com/saucelabs/sauce/blob/master/"))
-      (setq github-url (format "%s%s#L%s-%s" github-url fn
+    (message magit-file-name)
+    (let* ((fn (magit-file-relative-name (buffer-file-name)))
+	   (repo-name (file-name-nondirectory (directory-file-name (magit-get-top-dir))))
+	   (github-url (format "https://github.com/saucelabs/%s/blob/master/%s#L%s-L%s"
+			       repo-name
+			       fn
 			       (line-number-at-pos r1)
-			       (line-number-at-pos r2)))
+			       (line-number-at-pos r2))))
       (kill-new github-url)
       (message "git url: %s" github-url))))
+
+(defun copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
