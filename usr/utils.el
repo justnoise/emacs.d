@@ -143,6 +143,10 @@
   (interactive)
   (set-frame-position (selected-frame) 25 25)
   (set-frame-size (selected-frame) 197 56))
+(defun maximize-linux ()
+  (interactive)
+  (set-frame-position (selected-frame) 10 10)
+  (set-frame-size (selected-frame) 180 50))
 (defun fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
