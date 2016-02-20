@@ -11,21 +11,16 @@
 ;;        (let ((letter (downcase (match-data 2))))
 ;;          (replace-match (concat "\\1_" letter))))))
 
-
-;; might want to change this to a bookmark?
-(defun eetasks ()
-  (interactive)
-  (find-file "/home/bcox/sandbox/scripts/bin/tasks.xml")
-  (setq buffer-read-only t))
-
 (defun create-diary ()
   (interactive)
-  (let ((todays-date (format-time-string "%Y%m%d.txt")))
-    (find-file (concat "/Users/bcox/diary/" todays-date))))
+  (let ((todays-date (format-time-string "%Y%m%d.txt"))
+	(home-dir (format "%s/" (getenv "HOME"))))
+    (find-file (concat home-dir "/diary/" todays-date))))
 
-(defun create-note (notename)
+(defun make-note (notename)
   (interactive "sName of note:")
-  (find-file (concat "/Users/bcox/notes/" notename)))
+  (let ((home-dir (format "%s/" (getenv "HOME"))))
+    (find-file (concat home-dir "/notes/" notename))))
 
 (defun switch-to-last-buffer ()
   (interactive)
@@ -123,10 +118,10 @@
 ;;   (interactive)
 ;;   (set-frame-position (selected-frame) 1 29)
 ;;   (set-frame-size (selected-frame) 270 77))
-(defun make-big ()
+(defun make-big-work ()
   (interactive)
-  (set-frame-position (selected-frame) -2500 1)
-  (set-frame-size (selected-frame) 353 90))
+  (set-frame-position (selected-frame) 1900 1)
+  (set-frame-size (selected-frame) 245 67))
 (defun make-big-home ()
   (interactive)
   (set-frame-position (selected-frame) -1850 1)
@@ -138,15 +133,15 @@
 (defun make-small ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
-  (set-frame-size (selected-frame) 100 45))
+  (set-frame-size (selected-frame) 80 40))
 (defun maximize-mac ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
   (set-frame-size (selected-frame) 197 56))
 (defun maximize-linux ()
   (interactive)
-  (set-frame-position (selected-frame) 10 10)
-  (set-frame-size (selected-frame) 180 50))
+  (set-frame-position (selected-frame) 20 20)
+  (set-frame-size (selected-frame) 185 50))
 (defun fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
@@ -260,3 +255,12 @@ character you want out to column 80"
     (when filename
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
+
+(defun format-region-as-json (r1 r2)
+  (interactive "r")
+  (shell-command-on-region r1 r2 "python -m json.tool" nil 1))
+
+(defun set-trace()
+  (interactive)
+  (open-previous-line 1)
+  (insert "import pdb; pdb.set_trace()"))

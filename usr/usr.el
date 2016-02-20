@@ -120,6 +120,7 @@
 
 ;remove the useless toolbar from the top of the screen
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 ;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
@@ -127,6 +128,8 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\M-`" 'other-frame)
+(global-set-key "\C-xp" 'ag-project)
+(global-set-key "\C-xa" 'ag)
 (defalias 'qrr 'query-replace-regexp)
 ;(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 ;(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)

@@ -31,10 +31,37 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (zenburn)))
- '(flymake-allowed-file-name-masks (quote (("\\.py\\'" flymake-pyflakes-init) ("\\.html?\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
+ '(flymake-allowed-file-name-masks
+   (quote
+    (("\\.py\\'" flymake-pyflakes-init)
+     ("\\.html?\\'" flymake-xml-init)
+     ("\\.cs\\'" flymake-simple-make-init)
+     ("\\.p[ml]\\'" flymake-perl-init)
+     ("\\.php[345]?\\'" flymake-php-init)
+     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
+     ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
+     ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
+     ("\\.tex\\'" flymake-simple-tex-init)
+     ("\\.idl\\'" flymake-simple-make-init))))
+ '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
+ '(safe-local-variable-values
+   (quote
+    ((test-case-name . twisted\.web\.test\.test_http)
+     (test-case-name . twisted\.python\.test\.test_deprecate)
+     (test-case-name . flocker\.node\.agents\.functional\.test_gce)
+     (test-case-name . flocker\.node\.agents\.functional\.test_ebs)
+     (test-case-name . flocker\.node\.agents\.functional\.test_pd)
+     (test-case-name . twisted\.python\.test\.test_reflectpy3)
+     (test-case-name . twisted\.test\.test_reflect)
+     (test-case-name . admin\.test\.test_packaging)
+     (test-case-name . twisted\.trial\.test)
+     (test-case-name . flocker\.node\.agents\.test\.test_blockdevice)
+     (test-case-name . twisted\.test\.test_paths)
+     (test-case-name . twisted\.python\.test\.test_constants)
+     (test-case-name . flocker\.node\.agents\.test\.test_blockdevice_manager))))
  '(tool-bar-mode nil)
  '(transient-mark-mode nil))
 
