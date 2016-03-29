@@ -49,7 +49,8 @@
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
-    ((test-case-name . twisted\.web\.test\.test_http)
+    ((test-case-name . twisted\.conch\.test\.test_endpoints)
+     (test-case-name . twisted\.web\.test\.test_http)
      (test-case-name . twisted\.python\.test\.test_deprecate)
      (test-case-name . flocker\.node\.agents\.functional\.test_gce)
      (test-case-name . flocker\.node\.agents\.functional\.test_ebs)

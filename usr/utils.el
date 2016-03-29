@@ -264,3 +264,12 @@ character you want out to column 80"
   (interactive)
   (open-previous-line 1)
   (insert "import pdb; pdb.set_trace()"))
+
+(defun kill-all-buffers()
+  (interactive)
+  (dolist (buf (buffer-list))
+    (message (buffer-file-name buf))
+    (if (or (and (buffer-file-name buf)
+		 (not (string-suffix-p "todo.txt" (buffer-file-name buf))))
+	    (string-prefix-p "*ag search" (buffer-name buf)))
+	(kill-buffer buf))))
