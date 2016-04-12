@@ -40,17 +40,18 @@
 (load-usr-config-file "flymake-conf.el")
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
+(load-usr-config-file "ruby-conf.el")
 ; if we're on a mac, load jedi cause it'll be installed
 (if (window-system)
     (load-usr-config-file "jedi-conf.el"))
 (load-usr-config-file "haskell-conf.el")
-;(load-usr-config-file "elixir.el")
-;;(load-usr-config-file "column-marker.el")
-;;(load-usr-config-file "elixir.el")
+(load-usr-config-file "pallet-conf.el")
+;(load-usr-config-file "elixir-conf.el")
+;(load-usr-config-file "column-marker.el")
 ;(load-usr-config-file "erlang-conf.el")
-;;(load-usr-config-file "ipython-conf.el")
+;(load-usr-config-file "ipython-conf.el")
 
-;; Tried to get zsh to play nice with my emacs install... it no working
+;; Tried to get zsh to play nice with my emacs install... it no work
 ;; (require 'multi-term)
 ;; (setq multi-term-program "/usr/local/bin/zsh")
 ;; (setq system-uses-terminfo nil)
