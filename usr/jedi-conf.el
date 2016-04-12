@@ -1,7 +1,7 @@
 ;jedi
 (setq jedi:server-args
-      '("--sys-path" "/Users/bcox/sauce/lib"
-	"--virtual-env" "/Users/bcox/.virtualenvs/flocker"))
+      '("--sys-path" "/home/bcox/chq/flocker/flocker"
+	"--virtual-env" "/home/bcox/.virtualenvs/flocker"))
 ;; (setq jedi:server-args
 ;;       '("--virtual-env" "sauce"))
 (setq jedi:setup-keys t)

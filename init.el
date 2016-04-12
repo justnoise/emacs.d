@@ -43,6 +43,7 @@
      ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
      ("\\.tex\\'" flymake-simple-tex-init)
      ("\\.idl\\'" flymake-simple-make-init))))
+ '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
