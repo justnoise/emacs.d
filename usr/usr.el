@@ -30,8 +30,6 @@
 (when (>= emacs-major-version 24)
       (load-usr-config-file "packages-conf.el")
       (load-usr-config-file "auto-complete-conf.el")
-      (if (window-system)
-	  (load-usr-config-file "jedi-conf.el"))
       (load-usr-config-file "color-theme-conf.el"))
 
 (load-usr-config-file "utils.el")
@@ -41,7 +39,11 @@
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "flymake-conf.el")
 (load-usr-config-file "go-conf.el")
-(load-usr-config-file "elixir.el")
+(load-usr-config-file "python-conf.el")
+(if (window-system)
+    (load-usr-config-file "jedi-conf.el"))
+(load-usr-config-file "haskell-conf.el")
+;(load-usr-config-file "elixir.el")
 ;(load-usr-config-file "erlang-conf.el")
 ;;(load-usr-config-file "ipython-conf.el")
 
@@ -99,6 +101,8 @@
 ;;     ))
 
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; todo, source from zshrc and use sed
 (if (not (getenv "TERM_PROGRAM"))
@@ -134,7 +138,7 @@
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-(load-usr-config-file "python-conf.el")
+
 
 ; ----------------------------------------
 ; PHP stuff
