@@ -1,6 +1,6 @@
-(source "gnu" "http://elpa.gnu.org/packages/")
-(source "marmalade" "http://marmalade-repo.org/packages/")
-(source "melpa" "http://melpa.org/packages/")
+(source gnu)
+(source marmalade)
+(source melpa)
 
 (depends-on "ag")
 (depends-on "async")
@@ -26,6 +26,7 @@
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "popup")
+(depends-on "puppet-mode")
 (depends-on "python-environment")
 (depends-on "s")
 (depends-on "shut-up")

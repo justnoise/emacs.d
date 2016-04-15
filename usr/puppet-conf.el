@@ -1,5 +1,4 @@
-;(add-to-list 'auto-mode-alist '("\\.pp\\'" . ruby-mode))
-(add-hook 'ruby-mode-hook
+(add-hook 'puppet-mode-hook
 	  (lambda ()
 	    (set (make-local-variable 'indent-tabs-mode) t)
 	    (column-number-mode)
