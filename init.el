@@ -34,7 +34,7 @@
  '(flymake-allowed-file-name-masks
    (quote
     (("\\.py\\'" flymake-pyflakes-init)
-     ("\\.html?\\'" flymake-xml-init)
+     ;("\\.html?\\'" flymake-xml-init)
      ("\\.cs\\'" flymake-simple-make-init)
      ("\\.p[ml]\\'" flymake-perl-init)
      ("\\.php[345]?\\'" flymake-php-init)

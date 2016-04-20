@@ -29,7 +29,7 @@
 
 (when (>= emacs-major-version 24)
       (load-usr-config-file "packages-conf.el")
-      (load-usr-config-file "auto-complete-conf.el")
+      ;(load-usr-config-file "auto-complete-conf.el")
       (load-usr-config-file "color-theme-conf.el"))
 
 (load-usr-config-file "utils.el")
@@ -47,6 +47,7 @@
     (load-usr-config-file "jedi-conf.el"))
 (load-usr-config-file "haskell-conf.el")
 (load-usr-config-file "pallet-conf.el")
+(load-usr-config-file "web-mode-conf.el")
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")
 ;(load-usr-config-file "erlang-conf.el")

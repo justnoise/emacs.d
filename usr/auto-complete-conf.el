@@ -4,8 +4,9 @@
 ;; (global-auto-complete-mode t) 
 
 ;;(add-lib-path "auto-complete")
-(require 'auto-complete)
-(require 'auto-complete-config)
+;(require 'auto-complete)
+;(require 'auto-complete-config)
+(ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete/dict")
 (set-default 'ac-sources
              '(ac-source-jedi-direct))

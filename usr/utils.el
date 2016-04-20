@@ -137,7 +137,7 @@
 (defun maximize-mac ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
-  (set-frame-size (selected-frame) 197 56))
+  (set-frame-size (selected-frame) 197 53))
 (defun maximize-linux ()
   (interactive)
   (set-frame-position (selected-frame) 20 20)
@@ -235,11 +235,14 @@ character you want out to column 80"
   (require 'magit)
   (interactive "r")
   (save-excursion
-    (message magit-file-name)
+    ;; todo, think about calling git ls-remote --get-url and work with
+    ;; that to get the github org and repo.
     (let* ((fn (magit-file-relative-name (buffer-file-name)))
-	   (repo-name (file-name-nondirectory (directory-file-name (magit-get-top-dir))))
-	   (github-url (format "https://github.com/saucelabs/%s/blob/master/%s#L%s-L%s"
+	   (repo-name (file-name-nondirectory (directory-file-name (magit-toplevel))))
+	   (branch-name (magit-get-current-branch))
+	   (github-url (format "https://github.com/buildzoom/%s/blob/%s/%s#L%s-L%s"
 			       repo-name
+			       branch-name
 			       fn
 			       (line-number-at-pos r1)
 			       (line-number-at-pos r2))))
