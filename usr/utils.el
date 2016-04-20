@@ -231,16 +231,36 @@ character you want out to column 80"
               (set-buffer-modified-p nil)
               t))))
 
+(defun trim-trailing-whitespace (str)
+  (replace-regexp-in-string (rx (* (any " \t\n")) eos)
+			    ""
+			    str))
+
+(defun get-github-org-and-repo ()
+  "Take the output from git ls-remote --get-url which looks like
+git@github.com:justnoise/emacs.d.git
+and turn it into a list containing the org and repository
+(justnoise emacs.d)"
+  (let ((default-directory (magit-toplevel))
+	(org-repo-string
+	 (nth 1(split-string(trim-trailing-whitespace (shell-command-to-string
+						       "git ls-remote --get-url"))
+			    ":"))))
+    (let* ((org-repo (split-string org-repo-string "/"))
+	   (org (car org-repo))
+	   (repo (replace-regexp-in-string ".git" "" (nth 1 org-repo))))
+      (list org repo))))
+
+
 (defun show-in-github (r1 r2)
   (require 'magit)
   (interactive "r")
   (save-excursion
-    ;; todo, think about calling git ls-remote --get-url and work with
-    ;; that to get the github org and repo.
+    (multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
     (let* ((fn (magit-file-relative-name (buffer-file-name)))
-	   (repo-name (file-name-nondirectory (directory-file-name (magit-toplevel))))
 	   (branch-name (magit-get-current-branch))
-	   (github-url (format "https://github.com/buildzoom/%s/blob/%s/%s#L%s-L%s"
+	   (github-url (format "https://github.com/%s/%s/blob/%s/%s#L%s-L%s"
+			       org-name
 			       repo-name
 			       branch-name
 			       fn
