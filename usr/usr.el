@@ -32,10 +32,11 @@
       ;(load-usr-config-file "auto-complete-conf.el")
       (load-usr-config-file "color-theme-conf.el"))
 
+(load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
 (load-usr-config-file "utils.el")
+(load-usr-config-file "ido-conf.el")
 (load-usr-config-file "smex-conf.el")
 (load-usr-config-file "yaml-conf.el")
-(load-usr-config-file "ido-conf.el")
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "flymake-conf.el")
 (load-usr-config-file "go-conf.el")
@@ -46,8 +47,9 @@
 (if (window-system)
     (load-usr-config-file "jedi-conf.el"))
 (load-usr-config-file "haskell-conf.el")
-(load-usr-config-file "pallet-conf.el")
 (load-usr-config-file "web-mode-conf.el")
+
+(require 'vcl-mode)
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")
 ;(load-usr-config-file "erlang-conf.el")
@@ -116,7 +118,6 @@
 	    (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
 
 ; ideas for future improvement
-
 
 (push '("." . "~/.emacs_backups") backup-directory-alist)
 (setq inhibit-splash-screen t)

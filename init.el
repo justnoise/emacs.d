@@ -60,3 +60,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 140 :family "Inconsolata")))))
+(put 'downcase-region 'disabled nil)

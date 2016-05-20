@@ -120,7 +120,7 @@
 ;;   (set-frame-size (selected-frame) 270 77))
 (defun make-big-work ()
   (interactive)
-  (set-frame-position (selected-frame) 1500 1)
+  (set-frame-position (selected-frame) 1850 1)
   (set-frame-size (selected-frame) 300 80))
 (defun make-big-home ()
   (interactive)
@@ -250,7 +250,6 @@ and turn it into a list containing the org and repository
 	   (org (car org-repo))
 	   (repo (replace-regexp-in-string ".git" "" (nth 1 org-repo))))
       (list org repo))))
-
 
 (defun show-in-github (r1 r2)
   (require 'magit)
