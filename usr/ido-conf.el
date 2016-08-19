@@ -2,7 +2,7 @@
 ; IDO Mode for fast buffer switching is always ON
 ;----------------------------------------
 (require 'ido)
-(require 'flx-ido)
+;(require 'flx-ido)
 
 (ido-mode t)
 (ido-everywhere t)

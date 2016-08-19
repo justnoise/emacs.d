@@ -34,7 +34,6 @@
  '(flymake-allowed-file-name-masks
    (quote
     (("\\.py\\'" flymake-pyflakes-init)
-     ;("\\.html?\\'" flymake-xml-init)
      ("\\.cs\\'" flymake-simple-make-init)
      ("\\.p[ml]\\'" flymake-perl-init)
      ("\\.php[345]?\\'" flymake-php-init)
@@ -47,7 +46,9 @@
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
+ '(robe-completing-read-func (quote ido-completing-read))
  '(safe-local-variable-values (quote ((test-case-name . admin\.test\.test_release))))
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(transient-mark-mode nil))
 

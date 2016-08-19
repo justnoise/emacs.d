@@ -2,6 +2,7 @@
 (source marmalade)
 (source melpa)
 
+(depends-on "ac-inf-ruby")
 (depends-on "ag")
 (depends-on "async")
 (depends-on "auto-complete")
@@ -31,6 +32,8 @@
 (depends-on "popup")
 (depends-on "puppet-mode")
 (depends-on "python-environment")
+(depends-on "robe")
+(depends-on "rvm")
 (depends-on "s")
 (depends-on "shut-up")
 (depends-on "web-mode")

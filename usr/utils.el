@@ -285,7 +285,9 @@ and turn it into a list containing the org and repository
 (defun set-trace()
   (interactive)
   (open-previous-line 1)
-  (insert "import pdb; pdb.set_trace()"))
+  (cond ((equal major-mode 'ruby-mode) (insert "require 'pry'; binding.pry"))
+	((equal major-mode 'python-mode) (insert "import pdb; pdb.set_trace()"))))
+
 
 (defun kill-all-buffers()
   (interactive)
