@@ -125,7 +125,7 @@
 (defun make-big-home ()
   (interactive)
   (set-frame-position (selected-frame) 1550 1)
-  (set-frame-size (selected-frame) 260 75))
+  (set-frame-size (selected-frame) 254 71))
 ;; (defun make-big-home ()
 ;;   (interactive)
 ;;   (set-frame-position (selected-frame) 1440 1)
@@ -297,3 +297,9 @@ and turn it into a list containing the org and repository
 		 (not (string-suffix-p "todo.txt" (buffer-file-name buf))))
 	    (string-prefix-p "*ag search" (buffer-name buf)))
 	(kill-buffer buf))))
+
+(defun verify-yaml()
+  (interactive)
+  (shell-command-on-region
+   (point-min) (point-max)
+   "/usr/local/bin/python -c 'import yaml,sys;yaml.safe_load(sys.stdin)'"))

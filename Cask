@@ -37,5 +37,6 @@
 (depends-on "s")
 (depends-on "shut-up")
 (depends-on "web-mode")
+(depends-on "which-key")
 (depends-on "with-editor")
 (depends-on "yaml-mode")

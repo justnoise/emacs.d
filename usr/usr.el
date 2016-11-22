@@ -49,6 +49,9 @@
 (load-usr-config-file "haskell-conf.el")
 (load-usr-config-file "web-mode-conf.el")
 
+(require 'which-key)
+(which-key-mode)
+
 (require 'vcl-mode)
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")

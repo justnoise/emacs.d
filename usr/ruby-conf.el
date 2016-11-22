@@ -1,4 +1,3 @@
-;(add-to-list 'auto-mode-alist '("\\.pp\\'" . ruby-mode))
 (require 'rvm)
 ;; (rvm-use-default) ;; use rvm's default ruby for the current Emacs session
 
@@ -6,9 +5,15 @@
   (rvm-activate-corresponding-ruby))
 
 (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
-
 (autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
-(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+
+(require 'robe)
+(defun setup-robe-mode ()
+  (inf-ruby-minor-mode)
+  (robe-mode)
+  ;; add these guys so they match navigation in jedi (python)
+  (define-key robe-mode-map (kbd "C-.") 'robe-jump)
+  (define-key robe-mode-map (kbd "C-,") 'pop-tag-mark))
 
 (add-hook 'ruby-mode-hook
 	  (lambda ()
@@ -18,10 +23,5 @@
 	    (column-number-mode)
 	    (setq ruby-indent-level 2)
 	    (set-variable 'tab-width 2)
-	    (add-to-list 'before-save-hook 'delete-trailing-whitespace)))
-
-;;(setq ruby-deep-indent-paren nil)
-;;(require 'robe)
-;;(add-hook 'ruby-mode-hook 'robe-mode)
-
-;; look into adding flx-ido
+	    (add-to-list 'before-save-hook 'delete-trailing-whitespace)
+	    (setup-robe-mode)))
