@@ -12,6 +12,7 @@
 (depends-on "ctable")
 (depends-on "dash")
 (depends-on "deferred")
+(depends-on "elm-mode")
 (depends-on "epc")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
