@@ -48,6 +48,8 @@
     (load-usr-config-file "jedi-conf.el"))
 (load-usr-config-file "haskell-conf.el")
 (load-usr-config-file "web-mode-conf.el")
+(load-usr-config-file "org-mode-conf.el")
+(load-usr-config-file "magit-conf.el")
 (require 'which-key)
 (which-key-mode)
 
@@ -73,7 +75,7 @@
 (windmove-default-keybindings 'shift)
 (setq split-height-threshold 1600)
 (setq split-width-threshold 800)
-;(load-usr-config-file "org-mode-conf.el")
+
 
 ;; (load-usr-config-file "paredit-conf.el")
 ;; (load-usr-config-file "cpp-conf.el")

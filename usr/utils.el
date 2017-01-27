@@ -120,8 +120,8 @@
 ;;   (set-frame-size (selected-frame) 270 77))
 (defun make-big-work ()
   (interactive)
-  (set-frame-position (selected-frame) 1850 1)
-  (set-frame-size (selected-frame) 300 80))
+  (set-frame-position (selected-frame) 1800 1)
+  (set-frame-size (selected-frame) 310 86))
 (defun make-big-home ()
   (interactive)
   (set-frame-position (selected-frame) 1550 1)
@@ -294,7 +294,9 @@ and turn it into a list containing the org and repository
   (dolist (buf (buffer-list))
     (message (buffer-file-name buf))
     (if (or (and (buffer-file-name buf)
-		 (not (string-suffix-p "todo.txt" (buffer-file-name buf))))
+		 (not (or
+		       (string-suffix-p "todo.txt" (buffer-file-name buf))
+		       (string-suffix-p "todo.org" (buffer-file-name buf)))))
 	    (string-prefix-p "*ag search" (buffer-name buf)))
 	(kill-buffer buf))))
 
