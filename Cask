@@ -3,6 +3,7 @@
 (source melpa)
 
 (depends-on "ac-inf-ruby")
+(depends-on "ace-jump-mode")
 (depends-on "ag")
 (depends-on "async")
 (depends-on "auto-complete")

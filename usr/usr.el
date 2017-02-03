@@ -33,8 +33,10 @@
       (load-usr-config-file "color-theme-conf.el"))
 
 (load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
+
 (load-usr-config-file "utils.el")
 (load-usr-config-file "ido-conf.el")
+(load-usr-config-file "ace-jump-conf.el")
 (load-usr-config-file "smex-conf.el")
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
@@ -48,10 +50,15 @@
     (load-usr-config-file "jedi-conf.el"))
 (load-usr-config-file "haskell-conf.el")
 (load-usr-config-file "web-mode-conf.el")
+
 (load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "magit-conf.el")
 (require 'which-key)
 (which-key-mode)
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
 
 (require 'vcl-mode)
 ;(load-usr-config-file "elixir-conf.el")

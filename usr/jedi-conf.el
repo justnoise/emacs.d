@@ -1,14 +1,13 @@
 ;jedi
 
 (setq jedi:server-args
-      '("--virtual-env" "/Users/bcox/.virtualenvs/scrapy"))
-      ;; '("--sys-path" "/home/bcox/chq/flocker/flocker"
-      ;; 	"--virtual-env" "/home/bcox/.virtualenvs/flocker"))
-;; (setq jedi:server-args
-;;       '("--virtual-env" "sauce"))
+      '("--virtual-env" "/Users/bcox/.virtualenvs/ingest"
+	"--sys-path" "/Users/bcox/ingest/python/v2"))
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 (add-hook 'python-mode-hook 'jedi:setup)
+
+
 ;hooks
 ;; (add-hook 'python-mode-hook
 ;;           (lambda ()
