@@ -1,31 +1,3 @@
-(defun draw-julia ()
-  "Draws a julia fractal, cause I was curious about writing more elisp
-uses netpbm image format: https://en.wikipedia.org/wiki/Netpbm_format
-Inspired by https://www.reddit.com/r/dailyprogrammer/comments/4v5h3u/20160729_challenge_277_hard_trippy_julia_fractals/ and http://nullprogram.com/blog/2012/09/14/
-
-Todo: add some randomness to the parameters
-"
-  (interactive)
-  (pop-to-buffer (get-buffer-create "*thing*"))
-  (let ((w 200) (h 200) (cr -0.201) (ci -.683))
-    (fundamental-mode)
-    (erase-buffer)
-    (set-buffer-multibyte nil)
-    (insert (format "P6\n%d %d\n255\n" w h))
-    (dotimes (y h)
-      (dotimes (x w)
-	(let ((zr (- (/ x w .9) 1.0))
-	      (zi (- (/ y h .9) 1.0))
-	      (i 0))
-	  (while (and (< i 256)
-		      (< (+ (* zr zr) (* zi zi)) 2))
-	    (psetq zr (+ (* zr zr) (- (* zi zi)) cr)
-		   zi (+ (* (* zr zi) 2) ci)
-		   i (+ i 1))
-	    )
-	  (insert-char i 3)
-	  )))
-    (image-mode)))
 
 (defun camel-to-underscore (start end)
   (interactive "r")
@@ -355,3 +327,14 @@ and turn it into a list containing the org and repository
   (other-window (- (prefix-numeric-value n))))
 (global-set-key "\C-x\C-n" 'other-window)
 (global-set-key "\C-x\C-p" 'other-window-backward)
+
+(defvar repo-abbrevs
+  '(("i" . "/Users/bcox/ingest/")
+    ("b" . "/Users/bcox/buildzoom/")
+    ("p" . "/Users/bcox/dist/puppet/")
+    ("d" . "/Users/bcox/dist/data-science/")))
+(defun switch-repo (repo-abbrev)
+  (interactive "cRepo: (i)ngest (b)uildzoom (p)uppet (d)ata-science")
+  (let ((fn (cdr (assoc (char-to-string repo-abbrev) repo-abbrevs))))
+    (find-file fn)))
+(global-set-key "\C-cr" 'switch-repo)

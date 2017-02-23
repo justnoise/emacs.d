@@ -35,12 +35,15 @@
 (load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
 
 (load-usr-config-file "utils.el")
+(load-usr-config-file "fractals.el")
 (load-usr-config-file "ido-conf.el")
 (load-usr-config-file "ace-jump-conf.el")
 (load-usr-config-file "smex-conf.el")
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
-(load-usr-config-file "flymake-conf.el")
+;;(load-usr-config-file "flymake-conf.el")
+;;#(load-usr-config-file "flycheck-conf.el")
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
 (load-usr-config-file "ruby-conf.el")
