@@ -42,7 +42,6 @@
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
 ;;(load-usr-config-file "flymake-conf.el")
-;;#(load-usr-config-file "flycheck-conf.el")
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
@@ -133,7 +132,11 @@
 
 ; ideas for future improvement
 
-(push '("." . "~/.emacs_backups") backup-directory-alist)
+;; (push '("." . "~/.emacs_backups") backup-directory-alist)
+(setq backup-directory-alist
+      `((".*" . "~/.emacs_backups")))
+(setq auto-save-file-name-transforms
+      `((".*" ,"~/.emacs_backups" t)))
 (setq inhibit-splash-screen t)
 (setq transient-mark-mode nil)
 (setq auto-save-interval 600)

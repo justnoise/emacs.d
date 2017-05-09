@@ -17,8 +17,8 @@
 
 (add-hook 'ruby-mode-hook
 	  (lambda ()
-	    (require 'flymake-ruby)
-	    (flymake-ruby-load)
+	    ;; (require 'flymake-ruby)
+	    ;; (flymake-ruby-load)
 	    (set (make-local-variable 'indent-tabs-mode) t)
 	    (column-number-mode)
 	    (setq ruby-indent-level 2)
