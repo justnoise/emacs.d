@@ -15,6 +15,14 @@
   (define-key robe-mode-map (kbd "C-.") 'robe-jump)
   (define-key robe-mode-map (kbd "C-,") 'pop-tag-mark))
 
+(set-face-foreground 'font-lock-warning-face "yellow")
+(set-face-background 'font-lock-warning-face "red")
+
+(font-lock-add-keywords
+      'ruby-mode
+      '(("\\(require 'pry'\\)" 1 font-lock-warning-face t)
+	("\\(binding.pry\\)" 1 font-lock-warning-face t)))
+
 (add-hook 'ruby-mode-hook
 	  (lambda ()
 	    ;; (require 'flymake-ruby)
