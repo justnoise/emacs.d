@@ -48,11 +48,11 @@
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
 ;(load-usr-config-file "ruby-conf.el")
-(load-usr-config-file "puppet-conf.el")
+; (load-usr-config-file "puppet-conf.el")
 ; if we're on a mac, load jedi cause it'll be installed
 (if (window-system)
     (load-usr-config-file "jedi-conf.el"))
-(load-usr-config-file "haskell-conf.el")
+; (load-usr-config-file "haskell-conf.el")
 (load-usr-config-file "web-mode-conf.el")
 
 (load-usr-config-file "org-mode-conf.el")
