@@ -35,12 +35,16 @@
       (load-usr-config-file "color-theme-conf.el"))
 
 (load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
+
 (load-usr-config-file "utils.el")
+(load-usr-config-file "fractals.el")
 (load-usr-config-file "ido-conf.el")
+(load-usr-config-file "ace-jump-conf.el")
 (load-usr-config-file "smex-conf.el")
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
-(load-usr-config-file "flymake-conf.el")
+;;(load-usr-config-file "flymake-conf.el")
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
 ;(load-usr-config-file "ruby-conf.el")
@@ -50,10 +54,15 @@
     (load-usr-config-file "jedi-conf.el"))
 (load-usr-config-file "haskell-conf.el")
 (load-usr-config-file "web-mode-conf.el")
+
 (load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "magit-conf.el")
 (require 'which-key)
 (which-key-mode)
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
 
 (require 'vcl-mode)
 (load-usr-config-file "pallet-conf.el")
@@ -127,7 +136,11 @@
 
 ; ideas for future improvement
 
-(push '("." . "~/.emacs_backups") backup-directory-alist)
+;; (push '("." . "~/.emacs_backups") backup-directory-alist)
+(setq backup-directory-alist
+      `((".*" . "~/.emacs_backups")))
+(setq auto-save-file-name-transforms
+      `((".*" ,"~/.emacs_backups" t)))
 (setq inhibit-splash-screen t)
 (setq transient-mark-mode nil)
 (setq auto-save-interval 600)

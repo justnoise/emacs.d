@@ -3,6 +3,7 @@
 (source melpa)
 
 (depends-on "ac-inf-ruby")
+(depends-on "ace-jump-mode")
 (depends-on "ag")
 (depends-on "async")
 (depends-on "auto-complete")
@@ -16,6 +17,7 @@
 (depends-on "epc")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
+(depends-on "expand-region")
 (depends-on "f")
 (depends-on "find-file-in-repository")
 (depends-on "flx-ido")

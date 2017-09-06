@@ -111,7 +111,7 @@
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
  '(package-selected-packages
    (quote
-    (go-mode magit yaml-mode which-key web-mode rvm robe puppet-mode pallet jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository exec-path-from-shell elm-mode ag ac-inf-ruby)))
+    (go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
  '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
@@ -120,7 +120,8 @@
  '(safe-local-variable-values (quote ((test-case-name . admin\.test\.test_release))))
  '(sort-fold-case t t)
  '(tool-bar-mode nil)
- '(transient-mark-mode nil))
+ '(transient-mark-mode nil)
+ '(vcl-indent-level 4))
 
 (setq debug-on-error nil)
 
@@ -132,3 +133,4 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 140 :family "Inconsolata")))))
 (put 'downcase-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)

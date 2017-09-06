@@ -1,3 +1,4 @@
+
 (defun camel-to-underscore (start end)
   (interactive "r")
   (save-restriction
@@ -268,6 +269,16 @@ and turn it into a list containing the org and repository
       (kill-new github-url)
       (message "git url: %s" github-url))))
 
+(defun open-github-repo ()
+  (require 'magit)
+  (interactive)
+  (multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
+  (let* ((github-url (format "https://github.com/%s/%s"
+			    org-name
+			    repo-name))
+	 (cmd (concat "open -a \"/Applications/Google Chrome.app/\" " github-url)))
+    (shell-command cmd)))
+
 (defun copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
@@ -288,6 +299,12 @@ and turn it into a list containing the org and repository
   (cond ((equal major-mode 'ruby-mode) (insert "require 'pry'; binding.pry"))
 	((equal major-mode 'python-mode) (insert "import pdb; pdb.set_trace()"))))
 
+(defun iset-trace()
+  (interactive)
+  (open-previous-line 1)
+  (cond ((equal major-mode 'ruby-mode) (insert "require 'pry'; binding.pry"))
+	((equal major-mode 'python-mode) (insert "import ipdb; ipdb.set_trace()"))))
+
 
 (defun kill-all-buffers()
   (interactive)
@@ -305,3 +322,25 @@ and turn it into a list containing the org and repository
   (shell-command-on-region
    (point-min) (point-max)
    "/usr/local/bin/python -c 'import yaml,sys;yaml.safe_load(sys.stdin)'"))
+
+(defun unset-goal-column()
+  (interactive)
+  (set-goal-column 1))
+
+(defun other-window-backward (&optional n)
+  "Select Nth previous window."
+  (interactive "P")
+  (other-window (- (prefix-numeric-value n))))
+(global-set-key "\C-x\C-n" 'other-window)
+(global-set-key "\C-x\C-p" 'other-window-backward)
+
+(defvar repo-abbrevs
+  '(("i" . "/Users/bcox/ingest/")
+    ("b" . "/Users/bcox/buildzoom/")
+    ("p" . "/Users/bcox/dist/puppet/")
+    ("d" . "/Users/bcox/dist/data-science/")))
+(defun switch-repo (repo-abbrev)
+  (interactive "cRepo: (i)ngest (b)uildzoom (p)uppet (d)ata-science")
+  (let ((fn (cdr (assoc (char-to-string repo-abbrev) repo-abbrevs))))
+    (find-file fn)))
+(global-set-key "\C-cr" 'switch-repo)
