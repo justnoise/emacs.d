@@ -1,7 +1,7 @@
 ;jedi
 
 (setq jedi:server-args
-      '("--virtual-env" "/Users/bcox/.virtualenvs/scrapy"))
+      '("--virtual-env" "/Users/bcox/.virtualenvs/ingest"))
       ;; '("--sys-path" "/home/bcox/chq/flocker/flocker"
       ;; 	"--virtual-env" "/home/bcox/.virtualenvs/flocker"))
 ;; (setq jedi:server-args

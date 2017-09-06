@@ -21,6 +21,7 @@
 (depends-on "flx-ido")
 (depends-on "flymake-ruby")
 (depends-on "git-commit")
+(depends-on "go-mode")
 (depends-on "haskell-mode")
 (depends-on "hexrgb")
 (depends-on "jedi")

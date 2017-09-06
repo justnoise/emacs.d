@@ -1,5 +1,12 @@
 ;; ensure that we have a unified way of loading this across systems
 ;; stolen from sam aaron's live-coding-emacs config
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
@@ -102,13 +109,16 @@
      ("A" "#+ASCII: " "")
      ("i" "#+INDEX: ?" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
+ '(package-selected-packages
+   (quote
+    (go-mode magit yaml-mode which-key web-mode rvm robe puppet-mode pallet jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository exec-path-from-shell elm-mode ag ac-inf-ruby)))
  '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
  '(robe-completing-read-func (quote ido-completing-read))
  '(safe-local-variable-values (quote ((test-case-name . admin\.test\.test_release))))
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(transient-mark-mode nil))
 

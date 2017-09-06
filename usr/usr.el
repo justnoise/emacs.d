@@ -11,6 +11,8 @@
   (setq mac-command-modifier 'meta)
   (add-to-list 'exec-path "/usr/local/bin")
   (add-to-list 'exec-path "/Users/bcox/go/bin")
+  (add-to-list 'exec-path "/Users/bcox/go/bin")
+  (add-to-list 'exec-path "/Users/bcox/Development/go/bin/godef")
   (add-to-list 'exec-path "/Users/bcox/bin")
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
   (custom-set-faces
@@ -41,7 +43,7 @@
 (load-usr-config-file "flymake-conf.el")
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
-(load-usr-config-file "ruby-conf.el")
+;(load-usr-config-file "ruby-conf.el")
 (load-usr-config-file "puppet-conf.el")
 ; if we're on a mac, load jedi cause it'll be installed
 (if (window-system)
