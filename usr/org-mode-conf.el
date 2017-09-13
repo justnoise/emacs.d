@@ -3,10 +3,14 @@
 ;----------------------------------------
 (defun goto-todo-list ()
   (interactive)
-  (find-file "/Users/bcox/todo.org"))
+  (let ((home-dir (format "%s/" (getenv "HOME"))))
+    (find-file (concat home-dir "/todo.org"))))
+
 (defun goto-notes ()
   (interactive)
-  (find-file "/Users/bcox/notes.org"))
+  (let ((home-dir (format "%s/" (getenv "HOME"))))
+    (find-file (concat home-dir "/notes.org"))))
+
 ;; The following lines are always needed.  Choose your own keys.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
