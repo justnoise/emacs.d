@@ -37,7 +37,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ag-arguments
+   (quote
+    ("--smart-case" "--stats" "--ignore" "/home/bcox/go/src/github.com/elotl/milpa/vendor")))
  '(custom-enabled-themes (quote (zenburn)))
+ '(flycheck-check-syntax-automatically (quote (save)))
+ '(flycheck-disabled-checkers (quote (go-golint)))
  '(flymake-allowed-file-name-masks
    (quote
     (("\\.py\\'" flymake-pyflakes-init)
@@ -111,7 +116,7 @@
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
  '(package-selected-packages
    (quote
-    (flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
+    (erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
  '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
@@ -126,11 +131,13 @@
 (setq debug-on-error nil)
 
 (put 'narrow-to-region 'disabled nil)
+;; when eyes are better:
+;'(default ((t (:height 135 :family "Inconsolata")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Inconsolata")))))
+ '(default ((t (:height 130 :family "Inconsolata")))))
 (put 'downcase-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)

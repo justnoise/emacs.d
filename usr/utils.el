@@ -256,7 +256,7 @@ and turn it into a list containing the org and repository
   (require 'magit)
   (interactive "r")
   (save-excursion
-    (multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
+    (cl-multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
     (let* ((fn (magit-file-relative-name (buffer-file-name)))
 	   (branch-name (magit-get-current-branch))
 	   (github-url (format "https://github.com/%s/%s/blob/%s/%s#L%s-L%s"
@@ -346,3 +346,14 @@ and turn it into a list containing the org and repository
   (let ((fn (cdr (assoc (char-to-string repo-abbrev) repo-abbrevs))))
     (find-file fn)))
 (global-set-key "\C-cr" 'switch-repo)
+
+(defun big-print ()
+  (interactive)
+  (custom-set-faces
+   '(default ((t (:height 130 :family "Inconsolata")))))
+  )
+(defun small-print ()
+  (interactive)
+  (custom-set-faces
+   '(default ((t (:height 120 :family "Inconsolata")))))
+  )

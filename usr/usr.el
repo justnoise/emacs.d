@@ -16,7 +16,7 @@
   (add-to-list 'exec-path "/Users/bcox/bin")
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
   (custom-set-faces
-   '(default ((t (:height 140 :family "Inconsolata")))))
+   '(default ((t (:height 130 :family "Inconsolata")))))
   )
 
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -44,7 +44,7 @@
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
 ;;(load-usr-config-file "flymake-conf.el")
-;(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "python-conf.el")
 ;(load-usr-config-file "ruby-conf.el")
@@ -63,10 +63,11 @@
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 
 (require 'vcl-mode)
+(load-usr-config-file "erlang-conf.el")
 ; (load-usr-config-file "elm-conf.el")
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")
-;(load-usr-config-file "erlang-conf.el")
+
 ;(load-usr-config-file "ipython-conf.el")
 
 ;; Tried to get zsh to play nice with my emacs install... it no work
@@ -86,7 +87,7 @@
 
 
 ;; (load-usr-config-file "paredit-conf.el")
-;; (load-usr-config-file "cpp-conf.el")
+(load-usr-config-file "cpp-conf.el")
 (load-usr-config-file "c-conf.el")
 ;;(load-usr-config-file "cedet-conf.el")
 
