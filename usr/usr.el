@@ -53,7 +53,7 @@
 (if (window-system)
     (load-usr-config-file "jedi-conf.el"))
 ; (load-usr-config-file "haskell-conf.el")
-; (load-usr-config-file "web-mode-conf.el")
+(load-usr-config-file "web-mode-conf.el")
 
 (load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "magit-conf.el")
@@ -64,6 +64,10 @@
 
 (require 'vcl-mode)
 (load-usr-config-file "erlang-conf.el")
+
+(load-usr-config-file "protobuf-conf.el")
+
+
 ; (load-usr-config-file "elm-conf.el")
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")

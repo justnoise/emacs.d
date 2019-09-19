@@ -337,6 +337,7 @@ and turn it into a list containing the org and repository
 (defvar repo-abbrevs
   '(("e" . "/home/bcox/go/src/github.com/elotl/")
     ("m" . "/home/bcox/go/src/github.com/elotl/milpa/")
+    ("i" . "/home/bcox/go/src/github.com/elotl/itzo/")
     ("j" . "/home/bcox/go/src/github.com/justnoise/")
     ("o" . "/home/bcox/dist/osv/")
     ("k" . "/home/bcox/go/src/k8s.io/kubernetes/")

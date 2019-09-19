@@ -25,12 +25,16 @@
 	    (local-set-key (kbd "C-.") 'godef-jump)
 	    (local-set-key (kbd "C-,") 'pop-tag-mark)
 	    (auto-complete-mode 1)
+
 	    (if (not (string-match "go" compile-command))
 		(set (make-local-variable 'compile-command)
-		     "go build -v && go test -v && go vet"))	    
+		     "go build -v && go test -v && go vet"))
 	    ))
 (with-eval-after-load 'go-mode
-   (require 'go-autocomplete))
+  (require 'go-autocomplete)
+  (require 'go-guru)
+  )
+
 
 
 
