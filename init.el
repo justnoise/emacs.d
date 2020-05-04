@@ -58,6 +58,7 @@
      ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
      ("\\.tex\\'" flymake-simple-tex-init)
      ("\\.idl\\'" flymake-simple-make-init))))
+ '(groovy-indent-offset 2)
  '(org-structure-template-alist
    (quote
     (("s" "#+BEGIN_SRC ?
@@ -120,7 +121,7 @@
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
  '(package-selected-packages
    (quote
-    (terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
+    (async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
  '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)
