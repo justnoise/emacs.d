@@ -1,14 +1,14 @@
 ;jedi
 
-(setq jedi:server-args
-      '("--virtual-env" "/home/bcox/merq/venv"))
-      ;; '("--sys-path" "/home/bcox/chq/flocker/flocker"
-      ;; 	"--virtual-env" "/home/bcox/.virtualenvs/flocker"))
 ;; (setq jedi:server-args
-;;       '("--virtual-env" "sauce"))
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
-(add-hook 'python-mode-hook 'jedi:setup)
+;;       '("--virtual-env" "/home/bcox/merq/venv"))
+;;       ;; '("--sys-path" "/home/bcox/chq/flocker/flocker"
+;;       ;; 	"--virtual-env" "/home/bcox/.virtualenvs/flocker"))
+;; ;; (setq jedi:server-args
+;; ;;       '("--virtual-env" "sauce"))
+;;(setq jedi:setup-keys t)
+;;(setq jedi:complete-on-dot t)
+;;(add-hook 'python-mode-hook 'jedi:setup)
 
 
 ;hooks

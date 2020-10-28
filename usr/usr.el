@@ -63,7 +63,7 @@
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 
 (require 'vcl-mode)
-(load-usr-config-file "erlang-conf.el")
+; (load-usr-config-file "erlang-conf.el")
 
 (load-usr-config-file "protobuf-conf.el")
 
@@ -73,13 +73,6 @@
 ;(load-usr-config-file "column-marker.el")
 
 ;(load-usr-config-file "ipython-conf.el")
-
-;; Tried to get zsh to play nice with my emacs install... it no work
-;; (require 'multi-term)
-;; (setq multi-term-program "/usr/local/bin/zsh")
-;; (setq system-uses-terminfo nil)
-;; (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
 (require 'find-file-in-repository)
 (global-set-key [f7] 'find-file-in-repository)
@@ -132,9 +125,9 @@
   (exec-path-from-shell-initialize))
 
 ;; todo, source from zshrc and use sed
-(if (not (getenv "TERM_PROGRAM"))
-    (setenv "PATH"
-	    (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
+;; (if (not (getenv "TERM_PROGRAM"))
+;;     (setenv "PATH"
+;; 	    (shell-command-to-string "source $HOME/.bashrc && printf $PATH")))
 
 ; ideas for future improvement
 
@@ -182,21 +175,4 @@
 ;----------------------------------------
 ; Version Control - turn this off because it's very slow over sshfs
 ;----------------------------------------
-(setq vc-handled-backends nil)
-
-(defun cvs-edit ()
-  (interactive)
-  ;;first get whether we're on ny or est then remove full path and
-  ;;replace with sandbox.
-  (let ((host (nth 3 (split-string (buffer-file-name) "/")))
-        (buffer-path (replace-regexp-in-string "/home/bcox/\\(ny\\|est\\|fund\\)/sandbox/" "" (buffer-file-name))))
-    (let ((command (concat "ssh " host " 'cd /home/bcox/sandbox; cvs edit " buffer-path "'")))
-      (shell-command command)
-      (setq buffer-read-only nil)
-      (print command))))
-
-
-;; ----------------------------------------
-;; KBD Macros
-(fset 'securities-to-dict
-   "\C-e : \C-k\C-k\C-k\240'\C-e',\C-n\C-a\C-k")
+; (setq vc-handled-backends nil)

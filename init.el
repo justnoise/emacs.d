@@ -44,6 +44,7 @@
  '(custom-safe-themes
    (quote
     ("646676b902afda86f22bc66a2e14dbae7c0fc2fc988cc2fc11099ef5684b7a78" default)))
+ '(elpy-rpc-virtualenv-path "/home/bcox/.pyenv/versions/elpy")
  '(fci-rule-color "#383838")
  '(flycheck-check-syntax-automatically (quote (save)))
  '(flycheck-disabled-checkers (quote (go-golint)))
@@ -121,7 +122,7 @@
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
  '(package-selected-packages
    (quote
-    (async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
+    (pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
  '(python-fill-docstring-style (quote django))
  '(recentf-auto-cleanup (quote never))
  '(recentf-max-saved-items 50)

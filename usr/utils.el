@@ -335,12 +335,9 @@ and turn it into a list containing the org and repository
 (global-set-key "\C-x\C-p" 'other-window-backward)
 
 (defvar repo-abbrevs
-  '(("e" . "/home/bcox/go/src/github.com/elotl/")
-    ("i" . "/home/bcox/go/src/github.com/elotl/itzo/")
-    ("j" . "/home/bcox/go/src/github.com/justnoise/")
-    ("k" . "/home/bcox/go/src/k8s.io/kubernetes/")
-    ("c" . "/home/bcox/go/src/github.com/elotl/kip/")
-    ("v" . "/home/bcox/go/src/github.com/virtual-kubelet/virtual-kubelet/")
+  '(("b" . "/home/bcox/watersmart/backend")
+    ("c" . "/home/bcox/watersmart/chef")
+    ("c" . "/home/bcox/watersmart/infrastructure")
     ))
 (defun switch-repo (repo-abbrev)
   (interactive "cRepo: (e) elotl (j) justnoise (k) kubernetes (c) cloud-instance-provider (v) virtual-kubelet")
