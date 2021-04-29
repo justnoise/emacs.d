@@ -14,14 +14,14 @@
 
 
 (when window-system (set-exec-path-from-shell-PATH))
-(setenv "GOPATH" "/home/bcox/go")
-(setenv "GOFLAGS" "-mod=vendor")
+;(setenv "GOPATH" "/home/bcox/go")
+;(setenv "GOFLAGS" "-mod=vendor")
 
 (add-hook 'go-mode-hook
 	  (lambda ()
 	    (set-variable 'c-basic-offset 4)
 	    (set-variable 'tab-width 4)
-	    (setq gofmt-command "goimports")
+	    ;(setq gofmt-command "goimports")
 	    (add-to-list 'exec-path "/usr/local/go/bin/gofmt")
 	    (add-hook 'before-save-hook 'gofmt-before-save)
 	    (local-set-key (kbd "C-.") 'godef-jump)

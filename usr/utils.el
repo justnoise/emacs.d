@@ -32,7 +32,7 @@
   (interactive "DDirectory: ")
   (when (eq system-type 'darwin)
     (if (eq (substring dir 0 1) "~")
-	(setq dir (concat "/Users/bcox" (substring dir 1))))
+	(setq dir (concat "/Users/brendancox" (substring dir 1))))
     (call-process "/usr/bin/open" nil nil nil "")))
 
 ; == custom movement ==
@@ -121,12 +121,12 @@
 ;;   (set-frame-size (selected-frame) 270 77))
 (defun make-big-work ()
   (interactive)
-  (set-frame-position (selected-frame) 1800 2)
-  (set-frame-size (selected-frame) 226 86))
+  (set-frame-position (selected-frame) -2550 2)
+  (set-frame-size (selected-frame) 316 81))
 (defun make-big-home ()
   (interactive)
-  (set-frame-position (selected-frame) 1550 1)
-  (set-frame-size (selected-frame) 254 71))
+  (set-frame-position (selected-frame) -2550 2)
+  (set-frame-size (selected-frame) 316 81))
 ;; (defun make-big-home ()
 ;;   (interactive)
 ;;   (set-frame-position (selected-frame) 1440 1)
@@ -138,7 +138,7 @@
 (defun maximize-mac ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
-  (set-frame-size (selected-frame) 197 53))
+  (set-frame-size (selected-frame) 217 62))
 (defun maximize-linux ()
   (interactive)
   (set-frame-position (selected-frame) 45 16)
@@ -252,10 +252,21 @@ and turn it into a list containing the org and repository
 	   (repo (replace-regexp-in-string ".git" "" (nth 1 org-repo))))
       (list org repo))))
 
-(defun show-in-github (r1 r2)
-  (require 'magit)
-  (interactive "r")
+(defun column-number-at-pos (point)
+  "Return column number at POINT."
   (save-excursion
+    (goto-char point)
+    (current-column)))
+
+(defun show-in-github (r1 r2)
+  (interactive "r")
+  (require 'magit)
+  (save-excursion
+    (if (eq (column-number-at-pos r2) 0)
+	(progn
+	  (goto-char r2)
+	  (backward-char)
+	  (setq r2 (point))))
     (cl-multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
     (let* ((fn (magit-file-relative-name (buffer-file-name)))
 	   (branch-name (magit-get-current-branch))
@@ -269,9 +280,22 @@ and turn it into a list containing the org and repository
       (kill-new github-url)
       (message "git url: %s" github-url))))
 
-(defun open-github-repo ()
-  (require 'magit)
+(defun new-pull-request()
   (interactive)
+  (require 'magit)
+  (cl-multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
+  (let* ((branch-name (magit-get-current-branch))
+	   (github-url (format "https://github.com/%s/%s/compare/%s"
+			       org-name
+			       repo-name
+			       branch-name))
+	   (cmd (concat "open -a \"/Applications/Google Chrome.app/\" " github-url)))
+    (shell-command cmd)))
+
+
+(defun open-github-repo ()
+  (interactive)
+  (require 'magit)
   (multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
   (let* ((github-url (format "https://github.com/%s/%s"
 			    org-name
@@ -335,12 +359,16 @@ and turn it into a list containing the org and repository
 (global-set-key "\C-x\C-p" 'other-window-backward)
 
 (defvar repo-abbrevs
-  '(("b" . "/home/bcox/watersmart/backend")
-    ("c" . "/home/bcox/watersmart/chef")
-    ("c" . "/home/bcox/watersmart/infrastructure")
+  '(("b" . "/Users/brendancox/watersmart/backend")
+    ("c" . "/Users/brendancox/watersmart/chef")
+    ("i" . "/Users/brendancox/watersmart/infrastructure")
+    ("t" . "/Users/brendancox/watersmart/infrastructure/watersmart")
+    ("w" . "/Users/brendancox/watersmart")
+    ("l" . "/Users/brendancox/watersmart/panopticon2")
+    ("p" . "/Users/brendancox/watersmart/portal")
     ))
 (defun switch-repo (repo-abbrev)
-  (interactive "cRepo: (e) elotl (j) justnoise (k) kubernetes (c) cloud-instance-provider (v) virtual-kubelet")
+  (interactive "cRepo: (b) backend (c) chef (i) infrastructure (w) watersmart (j) justnoise (l) panopticon2 (p) portal")
   (let ((fn (cdr (assoc (char-to-string repo-abbrev) repo-abbrevs))))
     (find-file fn)))
 (global-set-key "\C-cr" 'switch-repo)
@@ -348,7 +376,7 @@ and turn it into a list containing the org and repository
 (defun big-print ()
   (interactive)
   (custom-set-faces
-   '(default ((t (:height 130 :family "Inconsolata")))))
+   '(default ((t (:height 160 :family "Inconsolata")))))
   )
 (defun small-print ()
   (interactive)

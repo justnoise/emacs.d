@@ -5,7 +5,9 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;(package-initialize)
+
+(setq warning-minimum-level :emergency)
 
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
@@ -37,20 +39,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ag-arguments (quote ("--smart-case" "--stats" "--ignore" "vendor/")))
+ '(ag-arguments
+   '("--smart-case" "--stats" "--ignore" "vendor/" "--ignore" "initial_load/" "-W" "1000"))
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(custom-enabled-themes (quote (zenburn)))
+ '(custom-enabled-themes '(zenburn))
  '(custom-safe-themes
-   (quote
-    ("646676b902afda86f22bc66a2e14dbae7c0fc2fc988cc2fc11099ef5684b7a78" default)))
- '(elpy-rpc-virtualenv-path "/home/bcox/.pyenv/versions/elpy")
+   '("646676b902afda86f22bc66a2e14dbae7c0fc2fc988cc2fc11099ef5684b7a78" default))
+ '(elpy-rpc-timeout 10)
+ '(elpy-rpc-virtualenv-path (concat (getenv "HOME") "/.pyenv/versions/elpy"))
  '(fci-rule-color "#383838")
- '(flycheck-check-syntax-automatically (quote (save)))
- '(flycheck-disabled-checkers (quote (go-golint)))
- '(flymake-allowed-file-name-masks
-   (quote
-    (("\\.py\\'" flymake-pyflakes-init)
+ '(flycheck-check-syntax-automatically '(save))
+ '(flycheck-disabled-checkers '(go-golint))
+ '(flymake-proc-allowed-file-name-masks
+   '(("\\.py\\'" flymake-pyflakes-init)
      ("\\.cs\\'" flymake-simple-make-init)
      ("\\.p[ml]\\'" flymake-perl-init)
      ("\\.php[345]?\\'" flymake-php-init)
@@ -58,11 +60,10 @@
      ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
      ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
      ("\\.tex\\'" flymake-simple-tex-init)
-     ("\\.idl\\'" flymake-simple-make-init))))
+     ("\\.idl\\'" flymake-simple-make-init)))
  '(groovy-indent-offset 2)
  '(org-structure-template-alist
-   (quote
-    (("s" "#+BEGIN_SRC ?
+   '(("s" "#+BEGIN_SRC ?
 
 #+END_SRC" "<src lang=\"?\">
 
@@ -119,23 +120,21 @@
 #+END_ASCII" "")
      ("A" "#+ASCII: " "")
      ("i" "#+INDEX: ?" "#+INDEX: ?")
-     ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
+     ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">")))
  '(package-selected-packages
-   (quote
-    (pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby)))
- '(python-fill-docstring-style (quote django))
- '(recentf-auto-cleanup (quote never))
+   '(php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
+ '(python-fill-docstring-style 'django)
+ '(recentf-auto-cleanup 'never)
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
- '(robe-completing-read-func (quote ido-completing-read))
- '(safe-local-variable-values (quote ((test-case-name . admin\.test\.test_release))))
- '(sort-fold-case t t)
+ '(robe-completing-read-func 'ido-completing-read)
+ '(safe-local-variable-values '((test-case-name . admin\.test\.test_release)))
+ '(sort-fold-case t)
  '(tool-bar-mode nil)
  '(transient-mark-mode nil)
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
+   '((20 . "#BC8383")
      (40 . "#CC9393")
      (60 . "#DFAF8F")
      (80 . "#D0BF8F")
@@ -152,7 +151,7 @@
      (300 . "#7CB8BB")
      (320 . "#8CD0D3")
      (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
+     (360 . "#DC8CC3")))
  '(vc-annotate-very-old-color "#DC8CC3")
  '(vcl-indent-level 4))
 
@@ -161,11 +160,12 @@
 (put 'narrow-to-region 'disabled nil)
 ;; when eyes are better:
 ;'(default ((t (:height 135 :family "Inconsolata")))))
+(put 'downcase-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 130 :family "Inconsolata")))))
-(put 'downcase-region 'disabled nil)
-(put 'set-goal-column 'disabled nil)
+ '(default ((t (:height 160 :family "Inconsolata")))))

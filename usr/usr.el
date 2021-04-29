@@ -6,18 +6,6 @@
 ; go to next close parenthesis
 ; have emacs automatically connect to a mysql db
 
-(when (eq system-type 'darwin) ;; mac specific settings
-;  (setq mac-option-modifier 'alt)
-  (setq mac-command-modifier 'meta)
-  (add-to-list 'exec-path "/usr/local/bin")
-  (add-to-list 'exec-path "/Users/bcox/go/bin")
-  (add-to-list 'exec-path "/Users/bcox/go/bin")
-  (add-to-list 'exec-path "/Users/bcox/Development/go/bin/godef")
-  (add-to-list 'exec-path "/Users/bcox/bin")
-  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
-  (custom-set-faces
-   '(default ((t (:height 130 :family "Inconsolata")))))
-  )
 
 (setq magit-last-seen-setup-instructions "1.4.0")
 ;; create a var for this directory
@@ -68,6 +56,7 @@
 (load-usr-config-file "protobuf-conf.el")
 
 
+
 ; (load-usr-config-file "elm-conf.el")
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")
@@ -88,6 +77,9 @@
 (load-usr-config-file "c-conf.el")
 ;;(load-usr-config-file "cedet-conf.el")
 
+(defun turn-off-indent-tabs-mode ()
+  (setq indent-tabs-mode nil))
+(add-hook 'sh-mode-hook #'turn-off-indent-tabs-mode)
 
 ;(load-usr-config-file "js2-conf.el")
 ;(add-lib-path "undo-tree")
@@ -176,3 +168,18 @@
 ; Version Control - turn this off because it's very slow over sshfs
 ;----------------------------------------
 ; (setq vc-handled-backends nil)
+(when (eq system-type 'darwin) ;; mac specific settings
+;  (setq mac-option-modifier 'alt)
+  (setq mac-command-modifier 'meta)
+  (add-to-list 'exec-path "/usr/local/bin")
+  (add-to-list 'exec-path "/Users/brendancox/go/bin")
+  (add-to-list 'exec-path "/Users/brendancox/Development/go/bin/godef")
+  (add-to-list 'exec-path "/Users/brendancox/bin")
+  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  (set-face-font 'default "-*-Inconsolata-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+  ;; (custom-set-faces
+  ;;  '(default ((t (:height 130 :family "Inconsolata")))))
+  )
+
+(delete-other-windows)
+(big-print)
