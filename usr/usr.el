@@ -34,7 +34,8 @@
 ;;(load-usr-config-file "flymake-conf.el")
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
-(load-usr-config-file "python-conf.el")
+;;(load-usr-config-file "python-conf.el")
+(load-usr-config-file "python-lsp-conf.el")
 ;(load-usr-config-file "ruby-conf.el")
 ; (load-usr-config-file "puppet-conf.el")
 ; if we're on a mac, load jedi cause it'll be installed
