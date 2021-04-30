@@ -61,7 +61,9 @@
      ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
      ("\\.tex\\'" flymake-simple-tex-init)
      ("\\.idl\\'" flymake-simple-make-init)))
+ '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(groovy-indent-offset 2)
+ '(lsp-python-ms-extra-paths ["/Users/brendancox/watersmart/backend/lib/"])
  '(org-structure-template-alist
    '(("s" "#+BEGIN_SRC ?
 
@@ -129,7 +131,7 @@
  '(recentf-mode t)
  '(robe-completing-read-func 'ido-completing-read)
  '(safe-local-variable-values '((test-case-name . admin\.test\.test_release)))
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(transient-mark-mode nil)
  '(vc-annotate-background "#2B2B2B")
