@@ -63,6 +63,7 @@
      ("\\.idl\\'" flymake-simple-make-init)))
  '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(groovy-indent-offset 2)
+ '(lsp-python-ms-extra-paths ["/Users/brendancox/watersmart/backend/lib/"])
  '(org-structure-template-alist
    '(("s" "#+BEGIN_SRC ?
 
