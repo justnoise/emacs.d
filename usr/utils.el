@@ -98,7 +98,7 @@
       (setq swapping-buffer (current-buffer))
       (setq swapping-window (selected-window))
       (message "Buffer and window marked for swapping."))))
-(global-set-key "\M-s" 'swap-buffers-in-windows)
+(global-set-key "\C-cs" 'swap-buffers-in-windows)
 
 (defun set-tabwidth (val)
   (interactive "nNew C tab offset: ")

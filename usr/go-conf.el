@@ -1,3 +1,12 @@
+;; (depends-on "go-autocomplete")
+;; (depends-on "go-complete")
+;; (depends-on "go-guru")
+;; (depends-on "go-mode")
+;; (depends-on "go-playground")
+;; (depends-on "go-snippets")
+;; (depends-on "gotest")
+
+
 (require 'yasnippet)
 (require 'exec-path-from-shell) ;; if not using the ELPA package
 (exec-path-from-shell-initialize)

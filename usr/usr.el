@@ -1,10 +1,7 @@
-;
-; functions:
-; kill current identifier
-; go to char in line (forwards and backwards)
-; go to next open parenthesis
-; go to next close parenthesis
-; have emacs automatically connect to a mysql db
+;; (eval-when-compile
+;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
+;;   (add-to-list 'load-path "<path where use-package is installed>")
+;;   (require 'use-package));
 
 
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -22,74 +19,55 @@
       ;(load-usr-config-file "auto-complete-conf.el")
       (load-usr-config-file "color-theme-conf.el"))
 
-(load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
+;;(load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
 
 (load-usr-config-file "utils.el")
 (load-usr-config-file "fractals.el")
 (load-usr-config-file "ido-conf.el")
-(load-usr-config-file "ace-jump-conf.el")
+;;(load-usr-config-file "ace-jump-conf.el")
+(load-usr-config-file "avy-conf.el")
 (load-usr-config-file "smex-conf.el")
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
 ;;(load-usr-config-file "flymake-conf.el")
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
-;;(load-usr-config-file "python-conf.el")
-(load-usr-config-file "python-lsp-conf.el")
-;(load-usr-config-file "ruby-conf.el")
-; (load-usr-config-file "puppet-conf.el")
-; if we're on a mac, load jedi cause it'll be installed
-(if (window-system)
-    (load-usr-config-file "jedi-conf.el"))
-; (load-usr-config-file "haskell-conf.el")
-(load-usr-config-file "web-mode-conf.el")
 
+(load-usr-config-file "python-lsp-conf.el")
+(load-usr-config-file "web-mode-conf.el")
 (load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "magit-conf.el")
-(require 'which-key)
-(which-key-mode)
+(load-usr-config-file "protobuf-conf.el")
+;; (use-package markdown-mode
+;;   :ensure t)
+
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'vcl-mode)
-; (load-usr-config-file "erlang-conf.el")
-
-(load-usr-config-file "protobuf-conf.el")
-
-
-
-; (load-usr-config-file "elm-conf.el")
+;(load-usr-config-file "python-conf.el")
+;(load-usr-config-file "ruby-conf.el")
+;(load-usr-config-file "puppet-conf.el")
+;if we're on a mac, load jedi cause it'll be installed
+;; (if (window-system)
+;;     (load-usr-config-file "jedi-conf.el"))
+;(load-usr-config-file "haskell-conf.el")
+;(load-usr-config-file "erlang-conf.el")
+;(load-usr-config-file "elm-conf.el")
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")
-
 ;(load-usr-config-file "ipython-conf.el")
-
-(require 'find-file-in-repository)
-(global-set-key [f7] 'find-file-in-repository)
 
 (require 'windmove)
 (windmove-default-keybindings 'shift)
 (setq split-height-threshold 1600)
 (setq split-width-threshold 800)
 
-
-;; (load-usr-config-file "paredit-conf.el")
 (load-usr-config-file "cpp-conf.el")
 (load-usr-config-file "c-conf.el")
-;;(load-usr-config-file "cedet-conf.el")
 
 (defun turn-off-indent-tabs-mode ()
   (setq indent-tabs-mode nil))
 (add-hook 'sh-mode-hook #'turn-off-indent-tabs-mode)
-
-;(load-usr-config-file "js2-conf.el")
-;(add-lib-path "undo-tree")
-;(require 'undo-tree)
-;;(global-undo-tree-mode)
-
-;; (defun load-cedet ()
-;;   (interactive)
-;;   (load-usr-config-file "cedet-conf.el"))
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
 					 try-expand-dabbrev-all-buffers
@@ -112,10 +90,6 @@
 ;;       (add-to-list 'default-frame-alist '(font . "-outline-Consolas-normal-r-normal-normal-13-97-96-96-c-*-iso8859-1"))
 ;;     (add-to-list 'default-frame-alist '(font . "-b&h-lucidatypewriter-medium-r-normal-sans-12-120-75-75-m-70-iso8859-1"))
 ;;     ))
-
-
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
 ;; todo, source from zshrc and use sed
 ;; (if (not (getenv "TERM_PROGRAM"))
@@ -173,9 +147,10 @@
 ;  (setq mac-option-modifier 'alt)
   (setq mac-command-modifier 'meta)
   (add-to-list 'exec-path "/usr/local/bin")
-  (add-to-list 'exec-path "/Users/brendancox/go/bin")
-  (add-to-list 'exec-path "/Users/brendancox/Development/go/bin/godef")
-  (add-to-list 'exec-path "/Users/brendancox/bin")
+  (let ((homedir (concat (getenv "HOME") "/")))
+    (add-to-list 'exec-path (concat homedir "go/bin"))
+    (add-to-list 'exec-path (concat homedir "bin")))
+    ;(add-to-list 'exec-path (concat homedir"/Users/brendancox/Development/go/bin/godef")
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
   (set-face-font 'default "-*-Inconsolata-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
   ;; (custom-set-faces

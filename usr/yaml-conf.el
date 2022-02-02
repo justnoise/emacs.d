@@ -1,4 +1,3 @@
-(add-lib-path "yaml")
-
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(use-package yaml-mode
+  :ensure t
+  :mode (list ("\\.yml$\\'" . yaml-mode) ("\\.yaml$\\'" . yaml-mode)))

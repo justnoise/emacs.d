@@ -1,14 +1,14 @@
-(require 'lsp-python-ms)
-(setq lsp-python-ms-auto-install-server t)
-(add-hook 'python-mode-hook #'lsp) ; or lsp-deferred
-(setq flycheck-python-flake8-executable (concat (getenv "HOME") "/.virtualenvs/backend/bin/flake8"))
+; (require 'lsp-python-ms)
+;(setq lsp-python-ms-auto-install-server t)
+; (add-hook 'python-mode-hook #'lsp) ; or lsp-deferred
+;(setq flycheck-python-flake8-executable (concat (getenv "HOME") "/.virtualenvs/backend/bin/flake8"))
 (use-package lsp-python-ms
   :ensure t
   :init (setq lsp-python-ms-auto-install-server t)
   :hook
   ((python-mode . (lambda ()
                    (require 'lsp-python-ms)
-                   (lsp-deferred); or lsp-deferred
+                   (lsp-deferred)
 		   (set (make-local-variable 'indent-tabs-mode) nil)
 		   (set-variable 'py-indent-offset 4)
 		   (set-variable 'tab-width 4)

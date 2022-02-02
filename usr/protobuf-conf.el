@@ -1,8 +1,9 @@
-(require 'protobuf-mode)
-
 (defconst my-protobuf-style
   '((c-basic-offset . 2)
     (indent-tabs-mode . nil)))
 
-(add-hook 'protobuf-mode-hook
-	  (lambda () (c-add-style "my-style" my-protobuf-style t)))
+(use-package protobuf-mode
+  :ensure t
+  :hook (protobuf-mode . (lambda () (c-add-style "my-style" my-protobuf-style t))))
+
+
