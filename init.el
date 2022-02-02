@@ -61,6 +61,7 @@
      ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
      ("\\.tex\\'" flymake-simple-tex-init)
      ("\\.idl\\'" flymake-simple-make-init)))
+ '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(groovy-indent-offset 2)
  '(org-structure-template-alist
    '(("s" "#+BEGIN_SRC ?
@@ -122,14 +123,14 @@
      ("i" "#+INDEX: ?" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">")))
  '(package-selected-packages
-   '(php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
+   '(go-complete php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
  '(python-fill-docstring-style 'django)
  '(recentf-auto-cleanup 'never)
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
  '(robe-completing-read-func 'ido-completing-read)
  '(safe-local-variable-values '((test-case-name . admin\.test\.test_release)))
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(transient-mark-mode nil)
  '(vc-annotate-background "#2B2B2B")
