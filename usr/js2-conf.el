@@ -3,6 +3,13 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode)))
 
+(define-key js-mode-map (kbd "M-.") nil)
+
+(use-package xref-js2
+  :ensure t)
+
+(add-hook 'js2-mode-hook (lambda ()
+  (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 ;; Consider using eslinting: https://github.com/eslint/eslint
 ;; (add-hook 'js2-mode-hook
 ;;           (lambda () (flycheck-select-checker "javascript-eslint")))

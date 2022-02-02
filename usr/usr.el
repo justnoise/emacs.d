@@ -14,10 +14,8 @@
 
 (add-lib-path "lisp")
 
-(when (>= emacs-major-version 24)
-      (load-usr-config-file "packages-conf.el")
-      ;(load-usr-config-file "auto-complete-conf.el")
-      (load-usr-config-file "color-theme-conf.el"))
+(load-usr-config-file "packages-conf.el")
+(load-usr-config-file "color-theme-conf.el")
 
 ;;(load-usr-config-file "pallet-conf.el") ;PUT THIS FIRST!
 
@@ -30,7 +28,7 @@
 (load-usr-config-file "yaml-conf.el")
 (load-usr-config-file "recentf-conf.el")
 ;;(load-usr-config-file "flymake-conf.el")
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;(add-hook 'after-init-hook #'global-flycheck-mode)
 (load-usr-config-file "go-conf.el")
 
 (load-usr-config-file "python-lsp-conf.el")
@@ -38,8 +36,6 @@
 (load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "magit-conf.el")
 (load-usr-config-file "protobuf-conf.el")
-;; (use-package markdown-mode
-;;   :ensure t)
 
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)

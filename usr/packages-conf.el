@@ -14,8 +14,9 @@
   (setq use-package-expand-minimally t))
 
 
-(use-package which-key :ensure t)
-(which-key-mode)
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
 (use-package hcl-mode :ensure t)
 (use-package terraform-mode :ensure t)
 (use-package exec-path-from-shell
@@ -28,6 +29,10 @@
   :defer nil
   :bind ("<f7>" . find-file-in-repository))
 (use-package markdown-mode
+  :ensure t)
+(use-package ag
+  :ensure t)
+(use-package flycheck
   :ensure t)
 
 ;; (require 'package)
