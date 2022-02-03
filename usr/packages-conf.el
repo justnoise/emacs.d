@@ -1,6 +1,3 @@
-;; (custom-set-variables
-;;  '(gnutls-algorithm-priority "normal:-vers-tls1.3"))
-
 (require 'package)
 (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -13,6 +10,7 @@
   (setq use-package-always-ensure t) ; this doesn't seem to work...
   (setq use-package-expand-minimally t))
 
+;;; -------------------- PACKAGES --------------------
 
 (use-package which-key
   :ensure t
@@ -28,17 +26,15 @@
   :ensure t
   :defer nil
   :bind ("<f7>" . find-file-in-repository))
+(use-package yaml-mode
+  :ensure t
+  :mode (("\\.yml$\\'" . yaml-mode) ("\\.yaml$\\'" . yaml-mode)))
 (use-package markdown-mode
   :ensure t)
 (use-package ag
-  :ensure t)
+  :ensure t
+  :bind (("\C-xp" . ag-project)
+	 ("\C-xa" . ag)))
 (use-package flycheck
   :ensure t)
-
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;     '("marmalade" .
-;;       "https://marmalade-repo.org/packages/"))
-;; (add-to-list 'package-archives
-;;              '("melpa" . "https://melpa.org/packages/") t)
-;; ;(package-initialize)
+(add-hook 'after-init-hook #'global-flycheck-mode)

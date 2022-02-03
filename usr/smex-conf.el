@@ -1,4 +1,4 @@
-(add-lib-path "smex")
+;;(add-lib-path "smex")
 
 (use-package smex
   :ensure t)

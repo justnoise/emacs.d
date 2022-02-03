@@ -1,3 +1,5 @@
+;;consider setting up https://github.com/ananthakumaran/tide
+
 (use-package js2-mode
   :ensure t
   :init
@@ -6,10 +8,11 @@
 (define-key js-mode-map (kbd "M-.") nil)
 
 (use-package xref-js2
-  :ensure t)
+  :ensure t
+  :hook (js2-mode . (lambda () (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
 
-(add-hook 'js2-mode-hook (lambda ()
-  (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
+;;(add-hook 'js2-mode-hook )
+
 ;; Consider using eslinting: https://github.com/eslint/eslint
 ;; (add-hook 'js2-mode-hook
 ;;           (lambda () (flycheck-select-checker "javascript-eslint")))

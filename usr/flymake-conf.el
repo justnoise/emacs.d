@@ -1,5 +1,5 @@
-(add-lib-path "flymake-cursor")
-(require 'flymake-cursor)
+;(add-lib-path "flymake-cursor")
+(;require 'flymake-cursor)
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
