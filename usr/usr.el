@@ -20,7 +20,6 @@
 (load-usr-config-file "fractals.el")
 (load-usr-config-file "ido-conf.el")
 (load-usr-config-file "avy-conf.el")
-(load-usr-config-file "smex-conf.el")
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "js2-conf.el")
