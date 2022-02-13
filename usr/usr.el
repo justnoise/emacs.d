@@ -21,6 +21,7 @@
 (load-usr-config-file "ido-conf.el")
 (load-usr-config-file "avy-conf.el")
 (load-usr-config-file "recentf-conf.el")
+(load-usr-config-file "lsp-conf.el")
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "js2-conf.el")
 (load-usr-config-file "python-lsp-conf.el")

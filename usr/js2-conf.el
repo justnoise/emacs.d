@@ -1,4 +1,5 @@
-;;consider setting up https://github.com/ananthakumaran/tide
+;; consider setting up https://github.com/ananthakumaran/tide
+;; also: https://www.reddit.com/r/emacs/comments/b9oxbm/lspmode_javascript/
 
 (use-package js2-mode
   :ensure t
