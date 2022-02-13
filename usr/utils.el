@@ -32,7 +32,7 @@
   (interactive "DDirectory: ")
   (when (eq system-type 'darwin)
     (if (eq (substring dir 0 1) "~")
-	(setq dir (concat "/Users/brendancox" (substring dir 1))))
+	(setq dir (concat (getenv "HOME") "/" (substring dir 1))))
     (call-process "/usr/bin/open" nil nil nil "")))
 
 ; == custom movement ==
@@ -113,12 +113,26 @@
   (setq c-basic-offset val)
   (set-variable 'tab-width val))
 
+(defun is-apple-silicon ()
+  (and
+   (eq system-type 'darwin)
+   (string= (string-trim (shell-command-to-string "uname -m")) "arm64")))
 
 ;Set the frame to open at the top of the screen and fill screen vertically
-;; (defun maximize ()
-;;   (interactive)
-;;   (set-frame-position (selected-frame) 1 29)
-;;   (set-frame-size (selected-frame) 270 77))
+(defun maximize ()
+  (interactive)
+  (cond ((eq system-type 'darwin)
+	 (if (is-apple-silicon)
+	     (progn
+	       (set-frame-position (selected-frame) 25 25)
+	       (set-frame-size (selected-frame) 210 61))
+	   (progn
+	     (set-frame-position (selected-frame) 25 25)
+	     (set-frame-size (selected-frame) 217 62))))
+	((eq system-type 'gnu/linux)
+	 (set-frame-position (selected-frame) 45 16)
+	 (set-frame-size (selected-frame) 167 45))))
+	 
 (defun make-big-work ()
   (interactive)
   (set-frame-position (selected-frame) -2550 2)
@@ -131,18 +145,12 @@
 ;;   (interactive)
 ;;   (set-frame-position (selected-frame) 1440 1)
 ;;   (set-frame-size (selected-frame) 250 75))
+
 (defun make-small ()
   (interactive)
   (set-frame-position (selected-frame) 25 25)
   (set-frame-size (selected-frame) 80 40))
-(defun maximize-mac ()
-  (interactive)
-  (set-frame-position (selected-frame) 25 25)
-  (set-frame-size (selected-frame) 217 62))
-(defun maximize-linux ()
-  (interactive)
-  (set-frame-position (selected-frame) 45 16)
-  (set-frame-size (selected-frame) 167 45))
+
 (defun fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
@@ -378,10 +386,15 @@ and turn it into a list containing the org and repository
   (custom-set-faces
    '(default ((t (:height 160 :family "Inconsolata")))))
   )
+(defun medium-print ()
+  (interactive)
+  (custom-set-faces
+   '(default ((t (:height 140 :family "Inconsolata")))))
+  )
 (defun small-print ()
   (interactive)
   (custom-set-faces
-   '(default ((t (:height 120 :family "Inconsolata")))))
+   '(default ((t (:height 130 :family "Inconsolata")))))
   )
 
 (defun kill-other-buffer ()
@@ -390,3 +403,4 @@ and turn it into a list containing the org and repository
   (kill-buffer)
   (other-window 1))
 (global-set-key "\C-xj" 'kill-other-buffer)
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
