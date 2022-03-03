@@ -20,12 +20,9 @@
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :ensure t
+  :defer nil
   :config
   (exec-path-from-shell-initialize))
-(use-package find-file-in-repository
-  :ensure t
-  :defer nil
-  :bind ("<f7>" . find-file-in-repository))
 (use-package yaml-mode
   :ensure t
   :mode (("\\.yml$\\'" . yaml-mode) ("\\.yaml$\\'" . yaml-mode)))

@@ -112,6 +112,10 @@
 (global-set-key "\M-`" 'other-frame)
 (global-set-key "\M-g" 'goto-line)
 (defalias 'qrr 'query-replace-regexp)
+(use-package find-file-in-repository
+  :ensure t
+  :defer nil
+  :bind ("<f7>" . find-file-in-repository))
 
 ;; Shell colors
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)

@@ -63,7 +63,6 @@
      ("\\.idl\\'" flymake-simple-make-init)))
  '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(groovy-indent-offset 2)
- '(lsp-python-ms-extra-paths ["/Users/brendancox/watersmart/backend/lib/"])
  '(org-structure-template-alist
    '(("s" "#+BEGIN_SRC ?
 
@@ -155,8 +154,8 @@
      (340 . "#94BFF3")
      (360 . "#DC8CC3")))
  '(vc-annotate-very-old-color "#DC8CC3")
- '(xref-js2-ignored-dirs '("bower_components" "build" "lib")) ; removed "node_modules"
- '(vcl-indent-level 4)) 
+ '(vcl-indent-level 4)
+ '(xref-js2-ignored-dirs '("bower_components" "build")))
 
 (setq debug-on-error nil)
 
