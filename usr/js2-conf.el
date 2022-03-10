@@ -1,10 +1,28 @@
 ;; consider setting up https://github.com/ananthakumaran/tide
 ;; also: https://www.reddit.com/r/emacs/comments/b9oxbm/lspmode_javascript/
 
+(use-package prettier-js
+  :ensure t
+  ;;(js2-mode prettier-js-mode)
+  )
+
+(use-package eslint-fix
+  :ensure t
+)
+
 (use-package js2-mode
   :ensure t
   :init
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode)))
+  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+  :config
+  (setq js-indent-level 2)
+  (setq fill-column 80)
+  (add-to-list 'before-save-hook 'delete-trailing-whitespace)
+  (add-hook 'js-mode-hook 'eslint-fix-auto-mode)
+  ; (add-hook 'before-save-hook 'prettier-js)
+  ;(add-to-list 'before-save-hook ')
+  )
+
 
 (define-key js-mode-map (kbd "M-.") nil)
 
