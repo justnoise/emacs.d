@@ -19,17 +19,21 @@
   (setq fill-column 80)
   (add-to-list 'before-save-hook 'delete-trailing-whitespace)
   (add-hook 'js-mode-hook 'eslint-fix-auto-mode)
+  (define-key js-mode-map (kbd "M-.") nil)
   ; (add-hook 'before-save-hook 'prettier-js)
   ;(add-to-list 'before-save-hook ')
+  :bind ("C-c l" . console-log)
   )
 
 
-(define-key js-mode-map (kbd "M-.") nil)
+
 
 (use-package xref-js2
   :ensure t
   :hook (js2-mode . (lambda () (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
 
+(use-package indium
+  :ensure t)
 ;;(add-hook 'js2-mode-hook )
 
 ;; Consider using eslinting: https://github.com/eslint/eslint

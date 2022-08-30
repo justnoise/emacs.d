@@ -43,3 +43,7 @@
   (("M-x" . smex)
    ("M-X" . smex-major-mode-commands)
    ("C-c C-c M-x" . execute-extended-command)))
+(use-package bazel
+  :ensure t)
+(use-package lua-mode
+  :ensure t)

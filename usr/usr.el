@@ -24,6 +24,7 @@
 (load-usr-config-file "lsp-conf.el")
 (load-usr-config-file "go-conf.el")
 (load-usr-config-file "js2-conf.el")
+(load-usr-config-file "typescript-conf.el")
 (load-usr-config-file "python-lsp-conf.el")
 (load-usr-config-file "web-mode-conf.el")
 (load-usr-config-file "org-mode-conf.el")

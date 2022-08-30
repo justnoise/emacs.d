@@ -74,31 +74,32 @@
 (defvar newline-and-indent t
   "Modify the behavior of the open-*-line functions to cause them to autoindent.")
 
-; == buffer transpose/swap ==
-(setq swapping-buffer nil)
-(setq swapping-window nil)
-(defun swap-buffers-in-windows ()
-  "Swap buffers between two windows"
-  (interactive)
-  (if (and swapping-window
-           swapping-buffer)
-      (let ((this-buffer (current-buffer))
-            (this-window (selected-window)))
-        (if (and (window-live-p swapping-window)
-                 (buffer-live-p swapping-buffer))
-            (progn (switch-to-buffer swapping-buffer)
-                   (select-window swapping-window)
-                   (switch-to-buffer this-buffer)
-                   (select-window this-window)
-                   (message "Swapped buffers."))
-          (message "Old buffer/window killed.  Aborting."))
-        (setq swapping-buffer nil)
-        (setq swapping-window nil))
-    (progn
-      (setq swapping-buffer (current-buffer))
-      (setq swapping-window (selected-window))
-      (message "Buffer and window marked for swapping."))))
-(global-set-key "\C-cs" 'swap-buffers-in-windows)
+;; ; == buffer transpose/swap ==
+;; (setq swapping-buffer nil)
+;; (setq swapping-window nil)
+;; (defun swap-buffers-in-windows ()
+;;   "Swap buffers between two windows"
+;;   (interactive)
+;;   (if (and swapping-window
+;;            swapping-buffer)
+;;       (let ((this-buffer (current-buffer))
+;;             (this-window (selected-window)))
+;;         (if (and (window-live-p swapping-window)
+;;                  (buffer-live-p swapping-buffer))
+;;             (progn (switch-to-buffer swapping-buffer)
+;;                    (select-window swapping-window)
+;;                    (switch-to-buffer this-buffer)
+;;                    (select-window this-window)
+;;                    (message "Swapped buffers."))
+;;           (message "Old buffer/window killed.  Aborting."))
+;;         (setq swapping-buffer nil)
+;;         (setq swapping-window nil))
+;;     (progn
+;;       (setq swapping-buffer (current-buffer))
+;;       (setq swapping-window (selected-window))
+;;       (message "Buffer and window marked for swapping."))))
+;; (global-set-key "\C-cs" 'swap-buffers-in-windows)
+(global-set-key "\C-cs" 'window-swap-states)
 
 (defun set-tabwidth (val)
   (interactive "nNew C tab offset: ")
@@ -132,7 +133,7 @@
 	((eq system-type 'gnu/linux)
 	 (set-frame-position (selected-frame) 45 16)
 	 (set-frame-size (selected-frame) 167 45))))
-	 
+
 (defun make-big-work ()
   (interactive)
   (set-frame-position (selected-frame) -2550 2)
@@ -141,6 +142,9 @@
   (interactive)
   (set-frame-position (selected-frame) -2550 2)
   (set-frame-size (selected-frame) 316 81))
+(defun make-big ()
+  (interactive)
+  (make-big-home))
 ;; (defun make-big-home ()
 ;;   (interactive)
 ;;   (set-frame-position (selected-frame) 1440 1)
@@ -297,7 +301,7 @@ and turn it into a list containing the org and repository
 			       org-name
 			       repo-name
 			       branch-name))
-	   (cmd (concat "open -a \"/Applications/Google Chrome.app/\" " github-url)))
+	   (cmd (concat "open -a \"/Applications/Firefox.app/\" " github-url)))
     (shell-command cmd)))
 
 
@@ -325,18 +329,44 @@ and turn it into a list containing the org and repository
   (interactive "r")
   (shell-command-on-region r1 r2 "python -m json.tool" nil 1))
 
+(defun format-region-clickhouse (r1 r2)
+  (interactive "r")
+  (let ((fmt-fn (lambda ()
+		  (let* ((quoted-sqlstr
+			  (concat
+			   "\""
+			   (replace-regexp-in-string "\n" " " (buffer-substring r1 r2))
+			   "\""))
+			 (cmd (concat "clickhouse format --query=" quoted-sqlstr)))
+		    (shell-command-to-string cmd)))))
+    (replace-region-contents r1 r2 fmt-fn)))
+
+(defun unformat-region-clickhouse (r1 r2)
+  (interactive "r")
+  (remove-newlines-region r1 r2))
+
+(defun remove-newlines-region (r1 r2)
+  (interactive "r")
+  (replace-string "\n" " " nil r1 r2))
+
+
 (defun set-trace()
   (interactive)
   (open-previous-line 1)
   (cond ((equal major-mode 'ruby-mode) (insert "require 'pry'; binding.pry"))
 	((equal major-mode 'python-mode) (insert "import pdb; pdb.set_trace()"))))
 
+(defun console-log()
+  (interactive)
+  (open-previous-line 1)
+  (insert "console.log(\"\");")
+  (backward-char 3))
+
 (defun iset-trace()
   (interactive)
   (open-previous-line 1)
   (cond ((equal major-mode 'ruby-mode) (insert "require 'pry'; binding.pry"))
 	((equal major-mode 'python-mode) (insert "import ipdb; ipdb.set_trace()"))))
-
 
 (defun kill-all-buffers()
   (interactive)
@@ -400,3 +430,11 @@ and turn it into a list containing the org and repository
   (other-window 1))
 (global-set-key "\C-xj" 'kill-other-buffer)
 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+
+(defun search-files (string)
+  (interactive "sSearch string: ")
+  (interactive (ag/read-from-minibuffer "Search string"))
+  (let ((notes-dir (format "%s/notes" (getenv "HOME")))
+	(local-dev-dir (format "%s/local_dev" (getenv "HOME"))))
+    (ag string notes-dir)
+    (ag string local-dev-dir)))
