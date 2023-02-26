@@ -32,7 +32,7 @@
 (load-usr-config-file "protobuf-conf.el")
 (load-usr-config-file "cpp-conf.el")
 (load-usr-config-file "c-conf.el")
-
+(load-usr-config-file "sh-conf.el")
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 ;;(load-usr-config-file "ace-jump-conf.el")

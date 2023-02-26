@@ -341,6 +341,15 @@ and turn it into a list containing the org and repository
 		    (shell-command-to-string cmd)))))
     (replace-region-contents r1 r2 fmt-fn)))
 
+
+(defun format-region-postgres ()
+  "A function to invoke pgFormatter as an external program."
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max)))
+        (pgfrm "/opt/homebrew/Cellar/pgformatter/5.3/bin/pg_format" ) )
+    (shell-command-on-region b e pgfrm (current-buffer) 1)) )
+
 (defun unformat-region-clickhouse (r1 r2)
   (interactive "r")
   (remove-newlines-region r1 r2))
@@ -412,6 +421,11 @@ and turn it into a list containing the org and repository
   (custom-set-faces
    '(default ((t (:height 160 :family "Inconsolata")))))
   )
+(defun huge-print ()
+  (interactive)
+  (custom-set-faces
+   '(default ((t (:height 180 :family "Inconsolata")))))
+  )
 (defun medium-print ()
   (interactive)
   (custom-set-faces
@@ -438,3 +452,47 @@ and turn it into a list containing the org and repository
 	(local-dev-dir (format "%s/local_dev" (getenv "HOME"))))
     (ag string notes-dir)
     (ag string local-dev-dir)))
+
+(setq jsdebugger-buffer nil)
+(defun bazel-debug-output-dir ()
+  (string-trim
+   (string-remove-prefix
+    "bazel-bin: "
+    (shell-command-to-string "/bin/bash -c 'cd /Users/bcox/sprig && bazel info --config=debug 2> /dev/null | grep -e \'^bazel-bin:\''"))))
+
+(defun breakpoint-helper (debug-cmd)
+  (let* ((line (format-mode-line "%l"))
+	 (bazelfile (concat
+		     (bazel-debug-output-dir)
+		     "/services/api/api.sh.runfiles/"
+		     (string-remove-prefix "/Users/bcox/" (buffer-file-name)))))
+    (with-current-buffer jsdebugger-buffer
+      (term-send-raw-string (format "%s('%s', %s)" debug-cmd bazelfile line)))))
+
+(defun breakpoint ()
+  (interactive)
+  (breakpoint-helper "setBreakpoint"))
+
+(defun clear-breakpoint ()
+  (interactive)
+  (breakpoint-helper "clearBreakpoint"))
+
+;; iterm is a shell script that runs applescript to launch a terminal
+(defun run-debugger ()
+  (interactive)
+  (start-process "iterm" "*iterm*" "/Users/bcox/bin/iterm" "/Users/bcox/bin/debugapi.sh")
+  (ansi-term "/bin/zsh" "jsdebugger")
+  ;; if we have an old buffer it'll create a new jsdebugger window so we will
+  ;; track the most recent name of the buffer
+  (setq jsdebugger-buffer (buffer-name))
+  (term-send-raw-string "node inspect localhost:9229"))
+
+;; also useful: bazel-test-at-point
+(defun bazel-test-package ()
+  (interactive)
+  (require 'bazel)
+  (let* ((root (bazel--workspace-root buffer-file-name))
+	 (dirname (file-name-directory buffer-file-name))
+	 (pkg-dotdotdot (concat "//" (bazel--package-name dirname root) "/...")))
+    (message pkg-dotdotdot)
+    (bazel--compile "test" pkg-dotdotdot)))

@@ -32,6 +32,8 @@
   :ensure t
   :bind (("\C-xp" . ag-project)
 	 ("\C-xa" . ag)))
+(use-package rg
+  :ensure t)
 (use-package flycheck
   :ensure t)
 (add-hook 'after-init-hook #'global-flycheck-mode)

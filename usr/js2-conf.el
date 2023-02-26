@@ -3,7 +3,8 @@
 
 (use-package prettier-js
   :ensure t
-  ;;(js2-mode prettier-js-mode)
+  ;; :init
+  ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
   )
 
 (use-package eslint-fix
@@ -18,14 +19,13 @@
   (setq js-indent-level 2)
   (setq fill-column 80)
   (add-to-list 'before-save-hook 'delete-trailing-whitespace)
+  (add-hook 'js-mode-hook 'prettier-js-mode)
   (add-hook 'js-mode-hook 'eslint-fix-auto-mode)
   (define-key js-mode-map (kbd "M-.") nil)
-  ; (add-hook 'before-save-hook 'prettier-js)
-  ;(add-to-list 'before-save-hook ')
-  :bind ("C-c l" . console-log)
+  :bind
+  ("C-c C-l" . console-log)
+  ("<f5>" . run-debugger)
   )
-
-
 
 
 (use-package xref-js2

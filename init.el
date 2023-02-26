@@ -40,7 +40,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ag-arguments
-   '("--smart-case" "--stats" "--ignore" "vendor/" "--ignore" "initial_load/" "-W" "1000"))
+   '("--smart-case" "--stats" "--ignore" "node_modules/" "--ignore" "initial_load/" "-W" "1000"))
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-enabled-themes '(zenburn))
@@ -49,6 +49,7 @@
  '(elpy-rpc-timeout 10)
  '(elpy-rpc-virtualenv-path (concat (getenv "HOME") "/.pyenv/versions/elpy"))
  '(fci-rule-color "#383838")
+ '(fill-column 80)
  '(flycheck-check-syntax-automatically '(save))
  '(flycheck-disabled-checkers '(go-golint))
  '(flymake-proc-allowed-file-name-masks
@@ -123,7 +124,7 @@
      ("i" "#+INDEX: ?" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">")))
  '(package-selected-packages
-   '(tide lua-mode indium bazel eslint-fix prettier-js projectile xref-js2 js2-mode avy vcl-mode go-complete php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
+   '(rg tide lua-mode indium bazel eslint-fix prettier-js projectile xref-js2 js2-mode avy vcl-mode go-complete php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
  '(python-fill-docstring-style 'django)
  '(recentf-auto-cleanup 'never)
  '(recentf-max-saved-items 50)

@@ -36,8 +36,16 @@
 			  (lsp-deferred)
 			  (setq-local tab-width 4)
 			  (lsp-go-install-save-hooks)
+			  (setq-default fill-column 80)
 			  (bind-key "C-c M-." 'lsp-find-references)
 			  ))
+
+(require 'bazel)
+(eval-after-load 'go-mode
+  (lambda ()
+    (define-key go-mode-map (kbd "<f8>") 'bazel-test-package)
+    (define-key go-mode-map (kbd "<S-f8>") 'bazel-test-at-point)))
+
 ;;(add-hook 'go-mode-hook #'yas-minor-mode)
 ;;(add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
 
