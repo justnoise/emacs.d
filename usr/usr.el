@@ -16,6 +16,7 @@
 (load-usr-config-file "packages-conf.el")
 (load-usr-config-file "color-theme-conf.el")
 (load-usr-config-file "projectile-conf.el")
+
 (load-usr-config-file "utils.el")
 (load-usr-config-file "fractals.el")
 (load-usr-config-file "ido-conf.el")
@@ -33,6 +34,7 @@
 (load-usr-config-file "cpp-conf.el")
 (load-usr-config-file "c-conf.el")
 (load-usr-config-file "sh-conf.el")
+(load-usr-config-file "copilot-conf.el")
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 ;;(load-usr-config-file "ace-jump-conf.el")
@@ -54,6 +56,11 @@
 (windmove-default-keybindings 'shift)
 (setq split-height-threshold 1600)
 (setq split-width-threshold 800)
+
+;; Speedbar hides go files
+(setq sr-speedbar-show-unknown-files t)
+(custom-set-variables '(speedbar-show-unknown-files t))
+(custom-set-variables '(sr-speedbar-show-unknown-files t))
 
 (when (eq system-type 'darwin) ;; mac specific settings
 ;  (setq mac-option-modifier 'alt)
@@ -98,6 +105,8 @@
 (setq inhibit-splash-screen t)
 (setq transient-mark-mode nil)
 (setq auto-save-interval 600)
+
+(setq lua-indent-level 2)
 
 ;(setq font-lock-maximum-decoration 3)
 ;(setq x-select-enable-clipboard t)

@@ -27,7 +27,6 @@
   ("<f5>" . run-debugger)
   )
 
-
 (use-package xref-js2
   :ensure t
   :hook (js2-mode . (lambda () (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))

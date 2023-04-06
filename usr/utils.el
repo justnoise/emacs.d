@@ -1,3 +1,4 @@
+(defvar print-size "big-print")
 
 (defun camel-to-underscore (start end)
   (interactive "r")
@@ -138,17 +139,17 @@
   (interactive)
   (set-frame-position (selected-frame) -2550 2)
   (set-frame-size (selected-frame) 316 81))
+
 (defun make-big-home ()
   (interactive)
   (set-frame-position (selected-frame) -2550 2)
-  (set-frame-size (selected-frame) 316 81))
+  (if (string= print-size "huge-print")
+      (set-frame-size (selected-frame) 281 76)
+    (set-frame-size (selected-frame) 316 81)))
+
 (defun make-big ()
   (interactive)
   (make-big-home))
-;; (defun make-big-home ()
-;;   (interactive)
-;;   (set-frame-position (selected-frame) 1440 1)
-;;   (set-frame-size (selected-frame) 250 75))
 
 (defun make-small ()
   (interactive)
@@ -270,8 +271,7 @@ and turn it into a list containing the org and repository
     (goto-char point)
     (current-column)))
 
-(defun show-in-github (r1 r2)
-  (interactive "r")
+(defun show-in-github-helper (r1 r2 main?)
   (require 'magit)
   (save-excursion
     (if (eq (column-number-at-pos r2) 0)
@@ -285,12 +285,20 @@ and turn it into a list containing the org and repository
 	   (github-url (format "https://github.com/%s/%s/blob/%s/%s#L%s-L%s"
 			       org-name
 			       repo-name
-			       branch-name
+			       (if main? "main" branch-name)
 			       fn
 			       (line-number-at-pos r1)
 			       (line-number-at-pos r2))))
       (kill-new github-url)
       (message "git url: %s" github-url))))
+
+(defun show-in-github (r1 r2)
+  (interactive "r")
+  (show-in-github-helper r1 r2 t))
+
+(defun show-in-github-branch (r1 r2)
+  (interactive "r")
+  (show-in-github-helper r1 r2 nil))
 
 (defun new-pull-request()
   (interactive)
@@ -418,14 +426,17 @@ and turn it into a list containing the org and repository
 
 (defun big-print ()
   (interactive)
+  (setq print-size "big-print")
   (custom-set-faces
    '(default ((t (:height 160 :family "Inconsolata")))))
   )
 (defun huge-print ()
   (interactive)
+  (setq print-size "huge-print")
   (custom-set-faces
    '(default ((t (:height 180 :family "Inconsolata")))))
   )
+
 (defun medium-print ()
   (interactive)
   (custom-set-faces
