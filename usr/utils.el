@@ -416,6 +416,7 @@ and turn it into a list containing the org and repository
 (defvar repo-abbrevs
   '(("s" . "/Users/bcox/sprig")
     ("a" . "/Users/bcox/go/src/github.com/Altinity")
+    ("j" . "/Users/bcox/go/src/github.com/justnoise")
     ("c" . "/Users/bcox/dist/ClickHouse/src")
     ))
 (defun switch-repo (repo-abbrev)

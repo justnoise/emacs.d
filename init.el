@@ -64,6 +64,7 @@
      ("\\.idl\\'" flymake-simple-make-init)))
  '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(groovy-indent-offset 2)
+ '(typescript-indent-level 2)
  '(org-structure-template-alist
    '(("s" "#+BEGIN_SRC ?
 

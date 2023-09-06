@@ -4,17 +4,19 @@
   :ensure t
   ;; uncomment to enable gopls http debug server
   ;; :custom (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
-  :hook ((c++-mode python-mode java-mode go-mode) . lsp-deferred)
+  :hook ((c++-mode python-mode java-mode go-mode js2-mode-hook) . lsp-deferred)
   ; :commands (lsp lsp-deferred)
   :config (progn
             ;; use flycheck, not flymake
+	    ;;(require 'lsp-clients)
+	    (add-hook 'js2-mode-hook 'lsp)
             (setq lsp-prefer-flymake nil)))
 
 ;; optional - provides fancy overlay information
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode
-  ;; :config 
+  ;; :config
   ;; disable inline documentation
   ;; (setq lsp-ui-sideline-enable nil)
   ;; disable showing docs on hover at the top of the window

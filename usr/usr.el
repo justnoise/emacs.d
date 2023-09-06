@@ -24,7 +24,7 @@
 (load-usr-config-file "recentf-conf.el")
 (load-usr-config-file "lsp-conf.el")
 (load-usr-config-file "go-conf.el")
-(load-usr-config-file "js2-conf.el")
+
 (load-usr-config-file "typescript-conf.el")
 (load-usr-config-file "python-lsp-conf.el")
 (load-usr-config-file "web-mode-conf.el")
@@ -34,6 +34,8 @@
 (load-usr-config-file "cpp-conf.el")
 (load-usr-config-file "c-conf.el")
 (load-usr-config-file "sh-conf.el")
+(load-usr-config-file "js2-conf.el")
+
 (load-usr-config-file "copilot-conf.el")
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
@@ -51,6 +53,7 @@
 ;(load-usr-config-file "elixir-conf.el")
 ;(load-usr-config-file "column-marker.el")
 ;(load-usr-config-file "ipython-conf.el")
+(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . yaml-mode))
 
 (require 'windmove)
 (windmove-default-keybindings 'shift)
