@@ -1,7 +1,7 @@
 (defvar last-prompt-file nil
   "Stores the last opened or created prompt file.")
 
-(defun new-prompt ()
+(defun prompt-new ()
   "Create a new prompt file in ~/prompts/ with a structured template."
   (interactive)
   (let* ((dir (expand-file-name "prompts" (getenv "HOME")))
@@ -59,3 +59,15 @@
           (insert (format "\n#include %s\n" filepath))
           (message "Inserted #include statement for: %s" filepath))))
     (message "No prompt file set or current buffer has no file."))
+
+(defun prompt-include-region (start end)
+  "Insert the selected region into the last opened prompt buffer with file path information."
+  (interactive "r")
+  (if (and last-prompt-file (buffer-file-name))
+      (let ((filepath (buffer-file-name))
+            (content (buffer-substring-no-properties start end)))
+        (with-current-buffer (find-file-noselect last-prompt-file)
+          (goto-char (point-max))
+          (insert (format "\n``` %s\n%s\n```\n" filepath content))
+          (message "Inserted selected region from: %s" filepath)))
+    (message "No prompt file set or current buffer has no file.")))
