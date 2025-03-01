@@ -1,4 +1,4 @@
-(defvar print-size "big-print")
+(defvar print-size "medium-print")
 
 (defun camel-to-underscore (start end)
   (interactive "r")
@@ -123,6 +123,7 @@
 ;Set the frame to open at the top of the screen and fill screen vertically
 (defun maximize ()
   (interactive)
+  (medium-print)
   (cond ((eq system-type 'darwin)
 	 (if (is-apple-silicon)
 	     (progn
@@ -135,15 +136,15 @@
 	 (set-frame-position (selected-frame) 45 16)
 	 (set-frame-size (selected-frame) 167 45))))
 
-(defun make-big-work ()
-  (interactive)
-  (set-frame-position (selected-frame) -2550 2)
-  (set-frame-size (selected-frame) 316 81))
+;; (defun make-big-work ()
+;;   (interactive)
+;;   (set-frame-position (selected-frame) -2550 2)
+;;   (set-frame-size (selected-frame) 316 81))
 
 (defun make-big-home ()
   (interactive)
   (set-frame-position (selected-frame) -2550 2)
-  (if (string= print-size "huge-print")
+  (if (string= print-size "big-print")
       (set-frame-size (selected-frame) 281 76)
     (set-frame-size (selected-frame) 316 81)))
 
@@ -280,6 +281,8 @@ and turn it into a list containing the org and repository
 	  (backward-char)
 	  (setq r2 (point))))
     (cl-multiple-value-setq (org-name repo-name) (get-github-org-and-repo))
+    (message (magit-file-relative-name (buffer-file-name)))
+    (message (magit-get-current-branch))
     (let* ((fn (magit-file-relative-name (buffer-file-name)))
 	   (branch-name (magit-get-current-branch))
 	   (github-url (format "https://github.com/%s/%s/blob/%s/%s#L%s-L%s"
@@ -288,7 +291,8 @@ and turn it into a list containing the org and repository
 			       (if main? "main" branch-name)
 			       fn
 			       (line-number-at-pos r1)
-			       (line-number-at-pos r2))))
+			       (line-number-at-pos r2))
+		       ))
       (kill-new github-url)
       (message "git url: %s" github-url))))
 
@@ -355,7 +359,7 @@ and turn it into a list containing the org and repository
   (interactive)
   (let ((b (if mark-active (min (point) (mark)) (point-min)))
         (e (if mark-active (max (point) (mark)) (point-max)))
-        (pgfrm "/opt/homebrew/Cellar/pgformatter/5.3/bin/pg_format" ) )
+        (pgfrm "/opt/homebrew/bin/pg_format" ))  ;/opt/homebrew/Cellar/pgformatter/5.3/bin/pg_format" ) )
     (shell-command-on-region b e pgfrm (current-buffer) 1)) )
 
 (defun unformat-region-clickhouse (r1 r2)
@@ -420,7 +424,7 @@ and turn it into a list containing the org and repository
     ("c" . "/Users/bcox/dist/ClickHouse/src")
     ))
 (defun switch-repo (repo-abbrev)
-  (interactive "cRepo: (s) sprig (a) altinity (c) clickhouse")
+  (interactive "cRepo: (s) sprig (a) altinity (c) clickhouse (j) justnoise")
   (let ((fn (cdr (assoc (char-to-string repo-abbrev) repo-abbrevs))))
     (find-file fn)))
 (global-set-key "\C-cr" 'switch-repo)
@@ -429,24 +433,21 @@ and turn it into a list containing the org and repository
   (interactive)
   (setq print-size "big-print")
   (custom-set-faces
-   '(default ((t (:height 160 :family "Inconsolata")))))
-  )
-(defun huge-print ()
-  (interactive)
-  (setq print-size "huge-print")
-  (custom-set-faces
    '(default ((t (:height 180 :family "Inconsolata")))))
   )
 
 (defun medium-print ()
   (interactive)
+  (setq print-size "medium-print")
   (custom-set-faces
-   '(default ((t (:height 140 :family "Inconsolata")))))
+   '(default ((t (:height 160 :family "Inconsolata")))))
   )
+
 (defun small-print ()
   (interactive)
+  (setq print-size "small-print")
   (custom-set-faces
-   '(default ((t (:height 130 :family "Inconsolata")))))
+   '(default ((t (:height 140 :family "Inconsolata")))))
   )
 
 (defun kill-other-buffer ()
@@ -455,7 +456,6 @@ and turn it into a list containing the org and repository
   (kill-buffer)
   (other-window 1))
 (global-set-key "\C-xj" 'kill-other-buffer)
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
 
 (defun search-files (string)
   (interactive "sSearch string: ")
@@ -508,3 +508,9 @@ and turn it into a list containing the org and repository
 	 (pkg-dotdotdot (concat "//" (bazel--package-name dirname root) "/...")))
     (message pkg-dotdotdot)
     (bazel--compile "test" pkg-dotdotdot)))
+
+(defun join-region-comma (start end)
+  (interactive "r")
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (insert (replace-regexp-in-string "\n" ", " text))))

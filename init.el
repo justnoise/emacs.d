@@ -64,74 +64,33 @@
      ("\\.idl\\'" flymake-simple-make-init)))
  '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(groovy-indent-offset 2)
+ '(lsp-clients-typescript-log-verbosity "verbose")
  '(org-structure-template-alist
-   '(("s" "#+BEGIN_SRC ?
-
-#+END_SRC" "<src lang=\"?\">
-
-</src>")
-     ("e" "#+BEGIN_EXAMPLE
-?
-#+END_EXAMPLE" "<example>
-?
-</example>")
-     ("q" "#+BEGIN_QUOTE
-?
-#+END_QUOTE" "<quote>
-?
-</quote>")
-     ("v" "#+BEGIN_VERSE
-?
-#+END_VERSE" "<verse>
-?
-</verse>")
-     ("V" "#+BEGIN_VERBATIM
-?
-#+END_VERBATIM" "<verbatim>
-?
-</verbatim>")
-     ("c" "#+BEGIN_CENTER
-?
-#+END_CENTER" "<center>
-?
-</center>")
-     ("r" "#+BEGIN_Ruby
-?
-#+END_Ruby" "<literal style=\"ruby\">
-?
-</literal>")
-     ("p" "#+BEGIN_Python
-?
-#+END_Python" "<literal style=\"python\">
-?
-</literal>")
-     ("l" "#+BEGIN_LaTeX
-?
-#+END_LaTeX" "<literal style=\"latex\">
-?
-</literal>")
+   '(("s" "#+BEGIN_SRC ?\12\12#+END_SRC" "<src lang=\"?\">\12\12</src>")
+     ("e" "#+BEGIN_EXAMPLE\12?\12#+END_EXAMPLE" "<example>\12?\12</example>")
+     ("q" "#+BEGIN_QUOTE\12?\12#+END_QUOTE" "<quote>\12?\12</quote>")
+     ("v" "#+BEGIN_VERSE\12?\12#+END_VERSE" "<verse>\12?\12</verse>")
+     ("V" "#+BEGIN_VERBATIM\12?\12#+END_VERBATIM" "<verbatim>\12?\12</verbatim>")
+     ("c" "#+BEGIN_CENTER\12?\12#+END_CENTER" "<center>\12?\12</center>")
+     ("r" "#+BEGIN_Ruby\12?\12#+END_Ruby" "<literal style=\"ruby\">\12?\12</literal>")
+     ("p" "#+BEGIN_Python\12?\12#+END_Python" "<literal style=\"python\">\12?\12</literal>")
+     ("l" "#+BEGIN_LaTeX\12?\12#+END_LaTeX" "<literal style=\"latex\">\12?\12</literal>")
      ("L" "#+LaTeX: " "<literal style=\"latex\">?</literal>")
-     ("h" "#+BEGIN_HTML
-?
-#+END_HTML" "<literal style=\"html\">
-?
-</literal>")
+     ("h" "#+BEGIN_HTML\12?\12#+END_HTML" "<literal style=\"html\">\12?\12</literal>")
      ("H" "#+HTML: " "<literal style=\"html\">?</literal>")
-     ("a" "#+BEGIN_ASCII
-?
-#+END_ASCII" "")
+     ("a" "#+BEGIN_ASCII\12?\12#+END_ASCII" "")
      ("A" "#+ASCII: " "")
      ("i" "#+INDEX: ?" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">")))
  '(package-selected-packages
-   '(lsp-mode editorconfig copilot quelpa-use-package quelpa rg tide lua-mode indium bazel eslint-fix prettier-js projectile xref-js2 js2-mode avy vcl-mode go-complete php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
+   '(kubed lsp-pyright copilot quelpa-leaf tree-sitter-langs tree-sitter tsc lsp-mode editorconfig quelpa-use-package quelpa rg tide lua-mode indium bazel eslint-fix prettier-js projectile xref-js2 js2-mode avy vcl-mode go-complete php-mode pyenv-mode-auto pyenv-mode use-package async cask elm-mode f flx git-commit gotest hcl-mode inf-ruby jedi jedi-core magit-popup package-build reformatter transient with-editor dash go-snippets yasnippet groovy-mode terraform-mode go-guru go-playground erlang ## protobuf-mode flymake-go go-autocomplete go-mode flycheck yaml-mode which-key web-mode rvm robe puppet-mode pallet magit jedi-direx hexrgb haskell-mode flymake-ruby flx-ido find-file-in-repository expand-region exec-path-from-shell ag ace-jump-mode ac-inf-ruby))
  '(python-fill-docstring-style 'django)
  '(recentf-auto-cleanup 'never)
  '(recentf-max-saved-items 50)
  '(recentf-mode t)
  '(robe-completing-read-func 'ido-completing-read)
- '(safe-local-variable-values '((test-case-name . admin\.test\.test_release)))
- '(sort-fold-case t t)
+ '(safe-local-variable-values '((test-case-name . admin.test.test_release)))
+ '(sort-fold-case t)
  '(speedbar-show-unknown-files t)
  '(sr-speedbar-show-unknown-files t t)
  '(tool-bar-mode nil)
@@ -169,7 +128,7 @@
 (put 'downcase-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-(big-print)
+(medium-print)
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.

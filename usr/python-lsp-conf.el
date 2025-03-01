@@ -2,11 +2,10 @@
 ; (setq lsp-python-ms-auto-install-server t)
 ; (add-hook 'python-mode-hook #'lsp) ; or lsp-deferred
 ; (setq flycheck-python-flake8-executable (concat (getenv "HOME") "/.virtualenvs/backend/bin/flake8"))
-(use-package lsp-python-ms
+(use-package lsp-pyright
   :ensure t
-  :init (setq lsp-python-ms-auto-install-server t)
   :hook (python-mode . (lambda ()
-                          (require 'lsp-python-ms)
+                          (require 'lsp-pyright)
                           (lsp))))  ; or lsp-deferred
 
 ; (setq lsp-python-ms-auto-install-server t)

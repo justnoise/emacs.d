@@ -61,8 +61,13 @@
 (use-package lua-mode
   :ensure t)
 
+(use-package kubed
+  :ensure t)
+
 (use-package copilot
   :quelpa (copilot :fetcher github
-                   :repo "zerolfx/copilot.el"
+                   :repo "copilot-emacs/copilot.el"
                    :branch "main"
+		   :upgrade t
                    :files ("dist" "*.el")))
+

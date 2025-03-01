@@ -37,6 +37,7 @@
 (load-usr-config-file "js2-conf.el")
 
 (load-usr-config-file "copilot-conf.el")
+;; (load-usr-config-file "kubed-conf.el")
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
 ;;(load-usr-config-file "ace-jump-conf.el")
@@ -116,7 +117,7 @@
 ;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (global-set-key "\C-w" 'backward-kill-word)
@@ -135,4 +136,4 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (delete-other-windows)
-;(big-print)
+;(medium-print)
