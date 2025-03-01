@@ -15,3 +15,7 @@ session.*
 transient/
 projectile-bookmarks.eld
 smex-items
+.cache/
+image-dired/
+quelpa/
+url/
