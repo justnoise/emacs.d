@@ -30,13 +30,14 @@
 (load-usr-config-file "web-mode-conf.el")
 (load-usr-config-file "org-mode-conf.el")
 (load-usr-config-file "magit-conf.el")
-(load-usr-config-file "protobuf-conf.el")
+;(load-usr-config-file "protobuf-conf.el")
 (load-usr-config-file "cpp-conf.el")
 (load-usr-config-file "c-conf.el")
 (load-usr-config-file "sh-conf.el")
 (load-usr-config-file "js2-conf.el")
-
+(load-usr-config-file "rust-conf.el")
 (load-usr-config-file "copilot-conf.el")
+(load-library "prompt.el")
 ;; (load-usr-config-file "kubed-conf.el")
 ;; (require 'expand-region)
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
@@ -60,6 +61,10 @@
 (windmove-default-keybindings 'shift)
 (setq split-height-threshold 1600)
 (setq split-width-threshold 800)
+
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;; Speedbar hides go files
 (setq sr-speedbar-show-unknown-files t)

@@ -143,6 +143,7 @@
 
 (defun make-big-home ()
   (interactive)
+  (big-print)
   (set-frame-position (selected-frame) -2550 2)
   (if (string= print-size "big-print")
       (set-frame-size (selected-frame) 281 76)
@@ -328,14 +329,37 @@ and turn it into a list containing the org and repository
     (shell-command cmd)))
 
 (defun copy-file-name-to-clipboard ()
-  "Copy the current buffer file name to the clipboard."
+  "Copy the current buffer's file name (without path) to the clipboard."
+  (interactive)
+  (let* ((fullpath (if (equal major-mode 'dired-mode)
+                       default-directory
+                     (buffer-file-name)))
+         (filename (and fullpath (file-name-nondirectory fullpath))))
+    (when filename
+      (kill-new filename)
+      (message "Copied file name '%s' to the clipboard." filename))))
+
+(defun copy-file-path-to-clipboard ()
+  "Copy the current buffer file path to the clipboard."
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)
                       default-directory
                     (buffer-file-name))))
     (when filename
       (kill-new filename)
-      (message "Copied buffer file name '%s' to the clipboard." filename))))
+      (message "Copied buffer file path '%s' to the clipboard." filename))))
+
+(defun copy-repo-path-to-clipboard ()
+  "Copy the current buffer's path inside the current repo to the clipboard."
+  (interactive)
+  (require 'magit)
+  (let* ((filename (if (equal major-mode 'dired-mode)
+		       default-directory
+		     (buffer-file-name)))
+	 (repo-path (magit-file-relative-name filename)))
+    (when repo-path
+      (kill-new repo-path)
+      (message "Copied repo path '%s' to the clipboard." repo-path))))
 
 (defun format-region-as-json (r1 r2)
   (interactive "r")
@@ -514,3 +538,53 @@ and turn it into a list containing the org and repository
   (let ((text (buffer-substring start end)))
     (delete-region start end)
     (insert (replace-regexp-in-string "\n" ", " text))))
+
+(defun join-region-in-statement (start end)
+  (interactive "r")
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (insert "'" (replace-regexp-in-string "\n" "', '" text) "'")))
+
+
+(defun to-grafana-dashboard (start end)
+  ;Indent region by by 4 spaces
+  (interactive "r")
+  (let ((indent-tabs-mode nil))
+    (indent-rigidly start end 4)))
+
+(require 'cl-lib)
+(defun convert-to-tsv (start end)
+  "Convert alternating lines of text and numbers in the region to two-column TSV.
+
+Input:
+  Foo bar baz
+  123
+  Another thing
+  456
+Output:
+  Foo bar baz<TAB>123
+  Another thing<TAB>456"
+  (interactive "r")
+  (let* ((raw   (split-string (buffer-substring-no-properties start end) "\n" t))
+         (pairs
+          (cl-loop for (desc num) on raw by #'cddr
+                   when (and num
+                             (string-match-p "\\`[0-9]+\\'" num))
+                   collect (concat desc "\t" num))))
+    (delete-region start end)
+    (insert (string-join pairs "\n"))))
+
+(defun eslint-file ()
+  "Run eslint on the current file and display the results in a new buffer."
+  (interactive)
+  ;; temporarily set default-directory to /Users/bcox/sprig/services/api
+  (let ((default-directory "/Users/bcox/sprig/services/api/"))
+    (let ((file (buffer-file-name)))
+      (if file
+	  (let ((output-buffer (get-buffer-create "*eslint-output*")))
+	    (with-current-buffer output-buffer
+	      (erase-buffer))
+	    (call-process "/Users/bcox/.nvm/versions/node/v22.14.0/bin/eslint" nil output-buffer nil "-c" "/Users/bcox/sprig/services/api/.eslintrc.json" file)
+	    (display-buffer output-buffer))
+	(message "Buffer is not visiting a file.")))))
+  

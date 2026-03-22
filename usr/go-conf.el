@@ -36,7 +36,7 @@
 			  (lsp-deferred)
 			  (setq-local tab-width 4)
 			  (lsp-go-install-save-hooks)
-			  (setq-default fill-column 80)
+			  (setq-default fill-column 100)
 			  (bind-key "C-c M-." 'lsp-find-references)
 			  ))
 

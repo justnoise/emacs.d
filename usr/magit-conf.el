@@ -4,5 +4,8 @@
   (global-set-key (kbd "C-x g") 'magit-status))
   ;;(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup))
 
-;(global-set-key "\C-xm" 'magit-status)
-;(global-set-key "\C-xg" 'magit-status)
+(global-set-key "\C-xm" 'magit-status)
+(global-set-key "\C-xg" 'magit-status)
+;;(setq magit-list-refs-sortby "-committerdate")
+(setq magit-list-refs-sortby "-creatordate")
+
