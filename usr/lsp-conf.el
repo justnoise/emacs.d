@@ -14,7 +14,8 @@
   ; :commands (lsp lsp-deferred)
   :config
   (setq lsp-disabled-clients '(eslint)) ;; note: must be a list
-  (setq lsp-prefer-flymake nil))
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-enable-file-watchers nil))
   ;; :config (progn
   ;;           ;; use flycheck, not flymake
   ;; 	    ;;(require 'lsp-clients)

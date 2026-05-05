@@ -588,3 +588,18 @@ Output:
 	    (display-buffer output-buffer))
 	(message "Buffer is not visiting a file.")))))
   
+(defun format-as-notion-table (start end)
+  "Convert alternating lines of alerts and counts into a Notion table.
+Operates on the selected region between START and END."
+  (interactive "r")
+  (let* ((raw (buffer-substring-no-properties start end))
+         (lines (split-string raw "\n" t))
+         (output "| Alert | Count |\n|---|---|\n"))
+    (while lines
+      (let ((alert (pop lines))
+            (count (pop lines)))
+        (setq output
+              (concat output
+                      "| " alert " | " (or count "") " |\n"))))
+    (delete-region start end)
+    (insert output)))
